@@ -1,0 +1,21 @@
+{
+  "images" : [
+    {
+      "idiom" : "universal",
+      "filename" : "favourite_favorite_heart_love_good_award_awards_conqueror_triumph_win_winner_verified_best_pride_reward_success_achievement_ceremony_champion_competitive_trophy_tribute_emblem_favorite_medal_winning_popularity_favourites_glory_high-128.png",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  }
+}

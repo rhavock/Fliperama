@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ImageViewController">
+            <connections>
+                <outlet property="page" destination="FH9-3i-Tpo" id="Scw-HA-Xc6"/>
+                <outlet property="slideshow" destination="iN0-l3-epB" id="5iF-Sk-1rA"/>
+                <outlet property="view" destination="nfu-tL-KW9" id="3EZ-fR-1gA"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="nfu-tL-KW9">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iN0-l3-epB" customClass="KASlideShow">
+                    <rect key="frame" x="0.0" y="-1" width="375" height="668"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </view>
+                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="FH9-3i-Tpo">
+                    <rect key="frame" x="144" y="333.5" width="87" height="0.0"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="87" id="ynl-R8-IU7"/>
+                    </constraints>
+                </pageControl>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="iN0-l3-epB" firstAttribute="leading" secondItem="nfu-tL-KW9" secondAttribute="leading" id="EqP-9b-yt8"/>
+                <constraint firstItem="iN0-l3-epB" firstAttribute="centerY" secondItem="FH9-3i-Tpo" secondAttribute="centerY" id="VvZ-CA-y2h"/>
+                <constraint firstItem="iN0-l3-epB" firstAttribute="centerX" secondItem="FH9-3i-Tpo" secondAttribute="centerX" id="XxK-Va-p5W"/>
+                <constraint firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" id="lQn-Bx-hLg"/>
+                <constraint firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottom" id="pNg-Fd-rJv"/>
+                <constraint firstItem="iN0-l3-epB" firstAttribute="centerY" secondItem="nfu-tL-KW9" secondAttribute="centerY" id="z85-ez-Xws"/>
+            </constraints>
+            <point key="canvasLocation" x="49.5" y="112.5"/>
+        </view>
+    </objects>
+</document>
