@@ -49,6 +49,7 @@
 		1DCBE77D1E608EDD001FF97C /* Cover.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DCBE77C1E608EDD001FF97C /* Cover.m */; };
 		1DCBE77F1E608EF0001FF97C /* Esrb.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DCBE77E1E608EF0001FF97C /* Esrb.m */; };
 		1DCBE7811E608F01001FF97C /* Pegi.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DCBE7801E608F01001FF97C /* Pegi.m */; };
+		1DD2F3FB1E9FEDB400862971 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD2F3FA1E9FEDB400862971 /* Utils.m */; };
 		3B855E3C1E97FBCE003AFA5E /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B855E3B1E97FBCD003AFA5E /* ImageViewController.m */; };
 		3B855E3E1E97FBF0003AFA5E /* ImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B855E3D1E97FBF0003AFA5E /* ImageViewController.xib */; };
 		3BBB4E4F1E8979BE009FCC68 /* DBConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BBB4E4E1E8979BE009FCC68 /* DBConnection.m */; };
@@ -137,6 +138,8 @@
 		1DCBE77C1E608EDD001FF97C /* Cover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cover.m; sourceTree = "<group>"; };
 		1DCBE77E1E608EF0001FF97C /* Esrb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Esrb.m; sourceTree = "<group>"; };
 		1DCBE7801E608F01001FF97C /* Pegi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pegi.m; sourceTree = "<group>"; };
+		1DD2F3F91E9FEDB400862971 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		1DD2F3FA1E9FEDB400862971 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		3B855E3A1E97FBCD003AFA5E /* ImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageViewController.h; path = ImageView/ImageViewController.h; sourceTree = "<group>"; };
 		3B855E3B1E97FBCD003AFA5E /* ImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageViewController.m; path = ImageView/ImageViewController.m; sourceTree = "<group>"; };
 		3B855E3D1E97FBF0003AFA5E /* ImageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ImageViewController.xib; path = ImageView/ImageViewController.xib; sourceTree = "<group>"; };
@@ -313,6 +316,8 @@
 		3BBB4E4C1E89799D009FCC68 /* Infra */ = {
 			isa = PBXGroup;
 			children = (
+				1DD2F3F91E9FEDB400862971 /* Utils.h */,
+				1DD2F3FA1E9FEDB400862971 /* Utils.m */,
 				1D877A221E660117002D22D0 /* SliderCarousel */,
 				3BBB4E501E8AF1A2009FCC68 /* Defaults.h */,
 				3BBB4E511E8AF1A2009FCC68 /* Defaults.m */,
@@ -461,6 +466,7 @@
 				1DCBE7451E5F8A07001FF97C /* ViewController.m in Sources */,
 				1DCBE77D1E608EDD001FF97C /* Cover.m in Sources */,
 				1DCBE76F1E608E11001FF97C /* Publishers.m in Sources */,
+				1DD2F3FB1E9FEDB400862971 /* Utils.m in Sources */,
 				1DCBE76D1E608DF6001FF97C /* PlayerPerspectives.m in Sources */,
 				1D19311A1E6362B90037B7C9 /* UIView+WebCacheOperation.m in Sources */,
 				1DCBE7421E5F8A07001FF97C /* AppDelegate.m in Sources */,

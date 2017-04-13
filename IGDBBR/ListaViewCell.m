@@ -93,12 +93,7 @@
 }
 -(void)setPlatforms{
     
-    NSString* stringPlat = [[NSString alloc]init];
-    
-    for(PlatformGame *p in self.game.platformGame){
-        stringPlat = [stringPlat stringByAppendingString:[NSString stringWithFormat:@" %@ ",p.name]];
-    }
-    self.platform.text =stringPlat;
+   self.platform.text =_game.platformGame.name;
     
 }
 @end

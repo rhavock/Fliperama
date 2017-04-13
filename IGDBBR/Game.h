@@ -55,7 +55,7 @@ typedef enum TamanhoImagem{
 @property (nonatomic, strong) Cover* cover;
 @property (nonatomic, strong) NSArray<Esrb*>* esrb;
 @property (nonatomic, strong) NSArray<Pegi*>* pegi;
-@property (nonatomic, strong) NSArray<PlatformGame*>* platformGame;
+@property (nonatomic, strong) PlatformGame* platformGame;
 
 -(void)loadGamesById:(NSNumber*)id callback:(void(^)(Game* game))callback;
 -(void)loadGames:(void(^)(NSArray<Game*>* games))callback;

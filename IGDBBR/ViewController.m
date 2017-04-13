@@ -100,12 +100,9 @@ static NSString *const kBannerAdUnitID = @"ca-app-pub-6564053570683791/132162206
 -(void)loadPlatform{
     PlatformGame* plats = [[PlatformGame alloc]init];
     game = [plats getPlatformByGameId:game];
-    NSString* stringPlat = [[NSString alloc]init];
     
-    for(PlatformGame *p in self.game.platformGame){
-        stringPlat = [stringPlat stringByAppendingString:[NSString stringWithFormat:@" %@ ",p.name]];
-    }
-    self.platform.text =stringPlat;
+    
+    self.platform.text =game.platformGame.name;
     
 }
 

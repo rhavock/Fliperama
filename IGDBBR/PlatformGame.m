@@ -11,44 +11,17 @@
 #import "Game.h"
 #import "DBConnection.h"
 #import "Defaults.h"
+#import "Utils.h"
+
 @implementation PlatformGame
 @synthesize offset;
-@synthesize platforms;
 
 -(Game*)getPlatformByGameId:(Game*)game{
-    int i = 0;
     
-    NSData *dictionaryData = [[NSUserDefaults standardUserDefaults] objectForKey:@"platformDictionary"];
-    NSMutableDictionary *platdictio =[NSKeyedUnarchiver unarchiveObjectWithData:dictionaryData];
-    platforms = [[NSMutableArray alloc]init];
-    if([platdictio count] == 0){
-        platdictio = [[NSMutableDictionary alloc]init];
-        while (i <140 ) {
-            NSArray *items =[self getPlatformByGameIdBase:i];
-            for(PlatformGame* plat in items){
-                if(plat.games != nil)
-                    [platdictio addEntriesFromDictionary:@{plat.name:plat.games}];
-            }
-            i = i + 10;
-        }
-        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:platdictio];
-        [[NSUserDefaults standardUserDefaults] setObject:data forKey:@"platformDictionary"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-    }
-    long val = [game.id longValue];
+    PlatformGame *plata = [[PlatformGame alloc]init];
+    plata.name = [Utils getWithId:game.id];
     
-    for(NSString* key in platdictio){
-        NSArray* arrGames = platdictio[key];
-        for(NSNumber* numb in arrGames){
-            if([numb longValue] == val){
-                PlatformGame *plata = [[PlatformGame alloc]init];
-                plata.name = key;
-                [platforms addObject:plata];
-            }
-        }
-    }
-    
-    game.platformGame = platforms;
+    game.platformGame = plata;
     return game;
 }
 
@@ -59,15 +32,13 @@
         [request setUrl:[NSString stringWithFormat:@"https://igdbcom-internet-game-database-v1.p.mashape.com/platforms/?fields=*&limit=10&offset=%d",offSet]];
         [request setHeaders:headers];
     }] asJson];
-    //:^(UNIHTTPJsonResponse *response, NSError *error) {
     
     UNIJsonNode *body = response.body;
     return [self convertToDomain:body];
-    //}];
 }
 
 -(NSArray*)convertToDomain:(UNIJsonNode*)response{
-    NSMutableArray *platforms = [[NSMutableArray alloc]init];
+    NSMutableArray *platforms = [[ NSMutableArray alloc]init];
     for (int i =0; i < [response.array count ]; i++) {
         
         PlatformGame *plat = [[PlatformGame alloc]init];
