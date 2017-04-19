@@ -43,13 +43,13 @@
     if(rgba[3] > 0) {
         CGFloat alpha = ((CGFloat)rgba[3])/255.0;
         CGFloat multiplier = alpha/255.0;
-        self.slideshow.backgroundColor = [UIColor colorWithRed:((CGFloat)rgba[0])*multiplier
+        self.speedSlider.backgroundColor = [UIColor colorWithRed:((CGFloat)rgba[0])*multiplier
                                                           green:((CGFloat)rgba[1])*multiplier
                                                            blue:((CGFloat)rgba[2])*multiplier
                                                           alpha:alpha];
     }
     else {
-        self.slideshow.backgroundColor = [UIColor colorWithRed:((CGFloat)rgba[0])/255.0
+        self.speedSlider.backgroundColor = [UIColor colorWithRed:((CGFloat)rgba[0])/255.0
                                                           green:((CGFloat)rgba[1])/255.0
                                                            blue:((CGFloat)rgba[2])/255.0
                                                           alpha:((CGFloat)rgba[3])/255.0];
@@ -94,7 +94,9 @@
     }
     _page.numberOfPages =_datasource.count;
     _page.currentPage = index;
-    [self averageColor:_datasource[index]];
+    self.imageVw.image = _datasource[index];
+    self.slideshow.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:1.0f];
+    
     return _datasource[index];
 }
 

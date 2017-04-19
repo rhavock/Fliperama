@@ -16,4 +16,5 @@
 @property (strong, nonatomic) IBOutlet UISlider *speedSlider;
 @property (strong, nonatomic) Game* game;
 @property (strong, nonatomic) IBOutlet UIPageControl *page;
+@property (strong, nonatomic) IBOutlet UIImageView *imageVw;
 @end
