@@ -17,4 +17,6 @@
 @property (strong, nonatomic) Game* game;
 @property (strong, nonatomic) IBOutlet UIPageControl *page;
 @property (strong, nonatomic) IBOutlet UIImageView *imageVw;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loading;
+
 @end

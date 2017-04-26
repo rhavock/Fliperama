@@ -14,7 +14,7 @@
 
 -(void)viewDidLoad{
     [super viewDidLoad];
-    
+    [self.loading startAnimating];
     self.navigationController.navigationBar.hidden = NO;
     _slideshow.datasource = self;
     _slideshow.delegate = self;
@@ -26,7 +26,16 @@
     _slideshow.gestureRecognizers = nil;
     [_slideshow addGesture:KASlideShowGestureSwipe];
     
+    UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+    UIVisualEffectView *blurEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+    blurEffectView.frame = self.imageVw.bounds;
+    blurEffectView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    
+    [self.imageVw addSubview:blurEffectView];
+    
     [self loadCarousel];
+    
+    
     
     
 }
@@ -43,13 +52,13 @@
     if(rgba[3] > 0) {
         CGFloat alpha = ((CGFloat)rgba[3])/255.0;
         CGFloat multiplier = alpha/255.0;
-        self.speedSlider.backgroundColor = [UIColor colorWithRed:((CGFloat)rgba[0])*multiplier
+        self.imageVw.backgroundColor = [UIColor colorWithRed:((CGFloat)rgba[0])*multiplier
                                                           green:((CGFloat)rgba[1])*multiplier
                                                            blue:((CGFloat)rgba[2])*multiplier
                                                           alpha:alpha];
     }
     else {
-        self.speedSlider.backgroundColor = [UIColor colorWithRed:((CGFloat)rgba[0])/255.0
+        self.imageVw.backgroundColor = [UIColor colorWithRed:((CGFloat)rgba[0])/255.0
                                                           green:((CGFloat)rgba[1])/255.0
                                                            blue:((CGFloat)rgba[2])/255.0
                                                           alpha:((CGFloat)rgba[3])/255.0];
@@ -73,7 +82,16 @@
     
     [_game imageUrl:_game.cover.url tamanhoImagem:cover_big retornoImagem:^(UIImage *image) {
         [_datasource addObject:image];
+        for(Screenshots *screen in _game.screenshots){
+            [_game imageUrl:screen.url tamanhoImagem:screenshot_huge retornoImagem:^(UIImage *image) {
+                
+                [_datasource addObject:image];
+                
+            }];
+        }
+
         [_slideshow reloadData];
+        [self.loading stopAnimating];
     }];
     
     
@@ -83,7 +101,7 @@
 - (NSObject *)slideShow:(KASlideShow *)slideShow objectAtIndex:(NSUInteger)index
 {
     
-    if(_datasource.count <= 1){
+    /*if(_datasource.count <= 1){
         for(Screenshots *screen in _game.screenshots){
             [_game imageUrl:screen.url tamanhoImagem:screenshot_huge retornoImagem:^(UIImage *image) {
                 
@@ -91,17 +109,18 @@
                 
             }];	
         }
-    }
+    }*/
     _page.numberOfPages =_datasource.count;
     _page.currentPage = index;
     self.imageVw.image = _datasource[index];
-    self.slideshow.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:1.0f];
+    //self.imageVw.backgroundColor = [UIColor clearColor];
     
     return _datasource[index];
 }
 
 - (NSUInteger)slideShowImagesNumber:(KASlideShow *)slideShow
 {
+    
     return _datasource.count;
 }
 

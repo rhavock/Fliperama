@@ -22,13 +22,16 @@ static NSString *const kInterstitialAdUnitID = @"ca-app-pub-6564053570683791/848
 @synthesize items;
 @synthesize table;
 - (void)loadGames {
+    [self.loading startAnimating];
     [[Game alloc]loadGames:^(NSArray<Game *> *games) {
         items = games;
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [table reloadData];
+            [self.loading stopAnimating];
         });
     }];
+    
 }
 
 -(void)viewDidLoad{
@@ -49,6 +52,9 @@ static NSString *const kInterstitialAdUnitID = @"ca-app-pub-6564053570683791/848
                             [UIImage imageNamed:@"popular"],
                             [UIImage imageNamed:@"trophy-icon"], nil];
     
+    [self.texto setReturnKeyType:UIReturnKeyDone];
+    self.texto.delegate = self;
+    
     [self.viewMenu addSubview:menu];
     
     [self loadGames];
@@ -59,6 +65,14 @@ static NSString *const kInterstitialAdUnitID = @"ca-app-pub-6564053570683791/848
 
     self.navigationController.navigationBar.hidden = YES;
 }
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    [self.texto resignFirstResponder];
+}
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [_texto resignFirstResponder];
+    [self buscarGame];
+    return YES;
+}
 -(void)menuDidSelected:(int)index{
     NSString* sort;
     if(index == 1)
@@ -67,11 +81,13 @@ static NSString *const kInterstitialAdUnitID = @"ca-app-pub-6564053570683791/848
         sort = @"popularity";
     if(index == 3)
         sort = @"rating";
+    [self.loading startAnimating];
     [[Game alloc]loadGamesBySort:sort callback:^(NSArray<Game *> *games) {
         items = games;
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [table reloadData];
+            [self.loading stopAnimating];
         });
     }];
 }
@@ -87,8 +103,10 @@ static NSString *const kInterstitialAdUnitID = @"ca-app-pub-6564053570683791/848
     
     Game *game = [items objectAtIndex:indexPath.row];
     PlatformGame *plats = [[PlatformGame alloc]init];
+    [self.loading startAnimating];
     game = [plats getPlatformByGameId:game];
     [cell setInfo:game];
+    [self.loading stopAnimating];
     return cell;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -99,15 +117,25 @@ static NSString *const kInterstitialAdUnitID = @"ca-app-pub-6564053570683791/848
     return 150;
 }
 -(IBAction)search{
+    
+    [self buscarGame];
+    
+}
+
+-(void)buscarGame{
+    [self.loading startAnimating];
     [[Game alloc]loadGamesByName:self.texto.text callback:^(NSArray<Game*>* games) {
         items = games;
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [table reloadData];
+            [self.loading stopAnimating];
         });
     }];
     [self.view endEditing:YES];
+    
 }
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     ViewController *view = [[ViewController alloc]init];
     view.game =[items objectAtIndex:indexPath.row];

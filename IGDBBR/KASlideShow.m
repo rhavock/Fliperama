@@ -81,7 +81,7 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view":_topImageView}]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view":_topImageView}]];
 
-    _topImageView.backgroundColor = [UIColor whiteColor];
+    _topImageView.backgroundColor = [UIColor clearColor];
 }
 
 #pragma mark - Get / Set

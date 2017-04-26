@@ -32,6 +32,7 @@ static NSString *const kBannerAdUnitID = @"ca-app-pub-6564053570683791/132162206
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.loading startAnimating];
     self.navigationController.navigationBar.hidden = NO;
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapDetected)];
     singleTap.numberOfTapsRequired = 1;
@@ -54,15 +55,18 @@ static NSString *const kBannerAdUnitID = @"ca-app-pub-6564053570683791/132162206
     [_slideshow addGesture:KASlideShowGestureSwipe];
     _name.text = game.name;
     _summary.text = [game.summary stringByRemovingPercentEncoding];
-    _storyline.text = game.storyline;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        _storyline.text = game.storyline;
+    });
     
     if(game.cover.url != nil){
-        
+        [self.loadingdetalhes startAnimating];
         [game imageUrl:game.cover.url tamanhoImagem:cover_big retornoImagem:^(UIImage *image) {
             @try {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     _image.image = image;
                     [self averageColor];
+                    [self.loadingdetalhes stopAnimating];
                     
                 });
             } @catch (NSException * e) {
@@ -75,12 +79,21 @@ static NSString *const kBannerAdUnitID = @"ca-app-pub-6564053570683791/132162206
         _image.image = [UIImage imageNamed:@"naotem"];
     }
     [self loadCarousel];
-    [self loadGenre];
     [self loadPlatform];
     [self loadReleaseDate];
-    
-    
- }
+    [self loadRating];
+    [self loadGenre];
+}
+
+-(void)loadRating{
+    self.nota.layer.cornerRadius = 20;
+    self.nota.textAlignment = NSTextAlignmentCenter;
+    self.nota.layer.borderWidth = 2;
+    self.nota.layer.borderColor = [UIColor greenColor].CGColor;
+    self.nota.layer.backgroundColor = [UIColor whiteColor].CGColor;
+    int Nota = [game.rating intValue];
+    self.nota.text = [NSString stringWithFormat:@"%d", Nota];
+}
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
@@ -128,13 +141,13 @@ static NSString *const kBannerAdUnitID = @"ca-app-pub-6564053570683791/132162206
     if(rgba[3] > 0) {
         CGFloat alpha = ((CGFloat)rgba[3])/255.0;
         CGFloat multiplier = alpha/255.0;
-        self.scrollview.backgroundColor = [UIColor colorWithRed:((CGFloat)rgba[0])*multiplier
+        self.viewRating.backgroundColor = [UIColor colorWithRed:((CGFloat)rgba[0])*multiplier
                                                           green:((CGFloat)rgba[1])*multiplier
                                                            blue:((CGFloat)rgba[2])*multiplier
                                                           alpha:alpha];
     }
     else {
-        self.scrollview.backgroundColor = [UIColor colorWithRed:((CGFloat)rgba[0])/255.0
+        self.viewRating.backgroundColor = [UIColor colorWithRed:((CGFloat)rgba[0])/255.0
                                                           green:((CGFloat)rgba[1])/255.0
                                                            blue:((CGFloat)rgba[2])/255.0
                                                           alpha:((CGFloat)rgba[3])/255.0];
@@ -150,6 +163,7 @@ static NSString *const kBannerAdUnitID = @"ca-app-pub-6564053570683791/132162206
             @try {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     _genero.text = genre.name;
+                    [self.loading stopAnimating];
                 });
             } @catch (NSException * e) {
                 NSLog(@"Exception: %@", e);
@@ -160,6 +174,7 @@ static NSString *const kBannerAdUnitID = @"ca-app-pub-6564053570683791/132162206
 }
 
 -(void)loadCarousel{
+    [self.loadingimages startAnimating];
     _speedSlider.alpha = .5;
     [_speedSlider setUserInteractionEnabled:NO];
     
@@ -177,9 +192,10 @@ static NSString *const kBannerAdUnitID = @"ca-app-pub-6564053570683791/132162206
             
             [_datasource addObject:image];
             [_slideshow reloadData];
+            [self.loadingimages stopAnimating];
         }];
     }
-   
+    
 }
 
 - (void)didReceiveMemoryWarning {

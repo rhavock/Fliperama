@@ -9,6 +9,6 @@
 @property (nonatomic, weak)IBOutlet UILabel* platform;
 @property (nonatomic, weak)IBOutlet UILabel* nota;
 @property (nonatomic, weak)Game* game;
-
+@property (nonatomic, weak)IBOutlet UIActivityIndicatorView *loadingImage;
 -(void)setInfo:(Game*)game;
 @end

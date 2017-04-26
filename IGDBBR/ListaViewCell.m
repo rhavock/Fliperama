@@ -29,6 +29,7 @@
 }
 
 - (void)setImageCover {
+    //[self.loadingImage startAnimating];
     
     if([_game.id longValue] == 16309 || [_game.id longValue] == 22425){
         imagem.image = [UIImage imageNamed:@"naotem"];
@@ -44,6 +45,7 @@
                     }
                     
                     imagem.image = imagen;
+                    //[self.loadingImage stopAnimating];
                 });
             } @catch (NSException * e) {
                 NSLog(@"Exception: %@", e);
@@ -52,6 +54,7 @@
     }
     else{
         imagem.image = [UIImage imageNamed:@"naotem"];
+        //[self.loadingImage stopAnimating];
     }
 }
 
@@ -76,7 +79,7 @@
     self.game = game;
     
     name.text = game.name;
-    int Nota = [game.nota intValue];
+    int Nota = [game.rating intValue];
     nota.text =  [NSString stringWithFormat:@"%d", Nota];
     
     if (game.releasedates.count > 0){
