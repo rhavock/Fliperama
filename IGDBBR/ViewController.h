@@ -26,6 +26,10 @@
 @property (nonatomic, strong)IBOutlet UIActivityIndicatorView *loadingimages;
 @property (nonatomic, strong)IBOutlet UIActivityIndicatorView *loadingdetalhes;
 @property (nonatomic, strong) IBOutlet UIView *viewRating;
+@property (nonatomic, strong) IBOutlet UIView *sly;
+@property (nonatomic, strong) IBOutlet UIImageView * imgsly;
+@property (nonatomic) int index;
+@property (nonatomic) int totalCount;
 
 @end
 

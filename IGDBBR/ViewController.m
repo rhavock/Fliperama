@@ -43,6 +43,14 @@ static NSString *const kBannerAdUnitID = @"ca-app-pub-6564053570683791/132162206
     self.bannerView.rootViewController = self;
     [self.bannerView loadRequest:[GADRequest request]];
     
+    UISwipeGestureRecognizer *swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(didSwipe:)];
+    swipeLeft.direction = UISwipeGestureRecognizerDirectionLeft;
+    [self.sly addGestureRecognizer:swipeLeft];
+    
+    UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self  action:@selector(didSwipe:)];
+    swipeRight.direction = UISwipeGestureRecognizerDirectionRight;
+    [self.sly addGestureRecognizer:swipeRight];
+    
     _slideshow.datasource = self;
     _slideshow.delegate = self;
     [_slideshow setDelay:1]; // Delay between transitions
@@ -84,7 +92,38 @@ static NSString *const kBannerAdUnitID = @"ca-app-pub-6564053570683791/132162206
     [self loadRating];
     [self loadGenre];
 }
-
+- (void)didSwipe:(UISwipeGestureRecognizer*)swipe{
+    
+    if (swipe.direction == UISwipeGestureRecognizerDirectionLeft) {
+        if((self.index + 1) >= self.totalCount){
+            self.index = 0;
+        }
+        [UIView animateWithDuration:0.5
+                         animations:^{
+                             self.imgsly.transform = CGAffineTransformMakeTranslation( - self.imgsly.layer.frame.size.width +10, 0);
+                         }
+                         completion:^(BOOL finished){
+                             self.imgsly.image = _datasource[++self.index];
+                             _page.currentPage = 	self.index;
+                             self.imgsly.transform = CGAffineTransformMakeTranslation(0, 0);
+                         }];
+        NSLog(@"Swipe Left");
+    } else if (swipe.direction == UISwipeGestureRecognizerDirectionRight) {
+        if(self.index > 0){
+            
+            [UIView animateWithDuration:0.5
+                             animations:^{
+                                 self.imgsly.transform = CGAffineTransformMakeTranslation(self.imgsly.layer.frame.size.width +10, 0);
+                             }
+                             completion:^(BOOL finished){
+                                 self.imgsly.image = _datasource[--self.index];
+                                 _page.currentPage = 	self.index;
+                                 self.imgsly.transform = CGAffineTransformMakeTranslation(0, 0);
+                             }];
+        }
+        NSLog(@"Swipe Right");
+    }
+}
 -(void)loadRating{
     self.nota.layer.cornerRadius = 20;
     self.nota.textAlignment = NSTextAlignmentCenter;
@@ -98,7 +137,7 @@ static NSString *const kBannerAdUnitID = @"ca-app-pub-6564053570683791/132162206
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
-    self.scrollview.contentSize = CGSizeMake(0,1600);
+    self.scrollview.contentSize = CGSizeMake(0,2000);
     
 }
 -(void)tapDetected{
@@ -174,6 +213,7 @@ static NSString *const kBannerAdUnitID = @"ca-app-pub-6564053570683791/132162206
 }
 
 -(void)loadCarousel{
+    
     [self.loadingimages startAnimating];
     _speedSlider.alpha = .5;
     [_speedSlider setUserInteractionEnabled:NO];
@@ -189,13 +229,13 @@ static NSString *const kBannerAdUnitID = @"ca-app-pub-6564053570683791/132162206
     
     for(Screenshots *screen in game.screenshots){
         [game imageUrl:screen.url tamanhoImagem:screenshot_huge retornoImagem:^(UIImage *image) {
-            
+            self.imgsly.image = image;
+            self.index = 0;
             [_datasource addObject:image];
-            [_slideshow reloadData];
+            _page.numberOfPages =++self.totalCount;
             [self.loadingimages stopAnimating];
         }];
     }
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -217,34 +257,6 @@ static NSString *const kBannerAdUnitID = @"ca-app-pub-6564053570683791/132162206
 {
     return _datasource.count;
 }
-
-#pragma mark - KASlideShow delegate
-
-- (void) slideShowWillShowNext:(KASlideShow *)slideShow
-{
-    self.counter.text = [NSString stringWithFormat:@"%lu / %lu",(unsigned long)slideShow.currentIndex+1,(unsigned long)_datasource.count];
-    NSLog(@"slideShowWillShowNext, index : %@",@(slideShow.currentIndex));
-}
-
-- (void) slideShowWillShowPrevious:(KASlideShow *)slideShow
-{
-    self.counter.text = [NSString stringWithFormat:@"%lu / %lu",(unsigned long)slideShow.currentIndex + 1,(unsigned long)_datasource.count];
-    NSLog(@"slideShowWillShowPrevious, index : %@",@(slideShow.currentIndex));
-}
-
-- (void) slideShowDidShowNext:(KASlideShow *)slideShow
-{
-    self.counter.text = [NSString stringWithFormat:@"%lu / %lu",(unsigned long)slideShow.currentIndex+1,(unsigned long)_datasource.count];
-    NSLog(@"slideShowDidShowNext, index : %@",@(slideShow.currentIndex));
-}
-
--(void) slideShowDidShowPrevious:(KASlideShow *)slideShow
-{
-    self.counter.text = [NSString stringWithFormat:@"%lu / %lu",(unsigned long)slideShow.currentIndex+1,(unsigned long)_datasource.count];
-    NSLog(@"slideShowDidShowPrevious, index : %@",@(slideShow.currentIndex));
-}
-
-
 
 
 
