@@ -17,8 +17,6 @@
 
 static NSString *const kBannerAdUnitID = @"ca-app-pub-6564053570683791/1321622064";
 @interface ViewController ()
-@property (strong,nonatomic) IBOutlet KASlideShow * slideshow;
-@property (strong, nonatomic) IBOutlet UISlider *speedSlider;
 @property(nonatomic, weak) IBOutlet GADBannerView *bannerView;
 @end
 
@@ -51,16 +49,6 @@ static NSString *const kBannerAdUnitID = @"ca-app-pub-6564053570683791/132162206
     swipeRight.direction = UISwipeGestureRecognizerDirectionRight;
     [self.sly addGestureRecognizer:swipeRight];
     
-    _slideshow.datasource = self;
-    _slideshow.delegate = self;
-    [_slideshow setDelay:1]; // Delay between transitions
-    [_slideshow setTransitionDuration:.5]; // Transition duration
-    [_slideshow setTransitionType:KASlideShowTransitionFade]; // Choose a transition type (fade or slide)
-    [_slideshow setImagesContentMode:UIViewContentModeScaleAspectFill]; // Choose a content mode for images to display
-    [_slideshow addGesture:KASlideShowGestureTap]; // Gesture to go previous/next directly on the image
-    [_slideshow setTransitionType:KASlideShowTransitionSlideHorizontal];
-    _slideshow.gestureRecognizers = nil;
-    [_slideshow addGesture:KASlideShowGestureSwipe];
     _name.text = game.name;
     _summary.text = [game.summary stringByRemovingPercentEncoding];
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -229,9 +217,7 @@ static NSString *const kBannerAdUnitID = @"ca-app-pub-6564053570683791/132162206
 -(void)loadCarousel{
     
     [self.loadingimages startAnimating];
-    _speedSlider.alpha = .5;
-    [_speedSlider setUserInteractionEnabled:NO];
-    
+      
     NSMutableArray<UIImage*> *source = [[NSMutableArray<UIImage*> alloc]init];
     _datasource = source;
     if([game.screenshots count] == 0){

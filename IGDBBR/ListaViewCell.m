@@ -28,48 +28,23 @@
 }
 
 - (void)setImageCover {
-    //[self.loadingImage startAnimating];
-    
-    if([_game.id longValue] == 16309 || [_game.id longValue] == 22425){
-        imagem.image = [UIImage imageNamed:@"naotem"];
-        return;
-    }
-    if (_game.cover.url != nil) {
-        [[Game alloc] imageUrl:_game.cover.url tamanhoImagem:cover_big retornoImagem:^(UIImage *imagen) {
-            @try {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    if(imagen ==nil){
-                        imagem.image = [UIImage imageNamed:@"naotem"];
-                        return;
-                    }
-                    
-                    imagem.image = imagen;
-                    //[self.loadingImage stopAnimating];
-                });
-            } @catch (NSException * e) {
-                NSLog(@"Exception: %@", e);
-            }
-        }];
+    if([_game.screenshots count] > 0){
         [[Game alloc] imageUrl:_game.screenshots[0].url tamanhoImagem:screenshot_big retornoImagem:^(UIImage *imagen) {
             @try {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     if(imagen ==nil){
-                        imagem.image = [UIImage imageNamed:@"naotem"];
+                        _imgBack.image = [UIImage imageNamed:@"naotem"];
                         return;
                     }
                     
                     _imgBack.image = imagen;
-                    //[self.loadingImage stopAnimating];
                 });
             } @catch (NSException * e) {
                 NSLog(@"Exception: %@", e);
             }
         }];
-
-    }
-    else{
-        imagem.image = [UIImage imageNamed:@"naotem"];
-        //[self.loadingImage stopAnimating];
+    }else{
+        _imgBack.image = [UIImage imageNamed:@"naotem"];
     }
     
     imagem.layer.shadowColor = [UIColor blackColor].CGColor;
@@ -104,7 +79,7 @@
     self.rating.layer.shadowColor = [UIColor blackColor].CGColor;
     self.rating.layer.shadowOffset = CGSizeMake(1.0, 1.0);
     self.rating.layer.backgroundColor = [UIColor clearColor].CGColor;
-
+    
     int Nota = [game.rating intValue];
     _rating.text =  [NSString stringWithFormat:@"%d", Nota];
     
@@ -123,7 +98,7 @@
 }
 -(void)setPlatforms{
     
-   self.platform.text =_game.platformGame.name;
+    self.platform.text =_game.platformGame.name;
     
 }
 @end

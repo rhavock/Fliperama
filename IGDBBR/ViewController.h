@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "KASlideShow.h"
 #import "Game.h"
-@interface ViewController : UIViewController<KASlideShowDelegate,KASlideShowDataSource>
+@interface ViewController : UIViewController
 @property (nonatomic, strong) IBOutlet UILabel *name;
 @property (nonatomic, strong) IBOutlet UILabel *summary;
 @property (nonatomic, strong) IBOutlet UILabel *storyline;

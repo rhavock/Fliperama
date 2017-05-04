@@ -95,6 +95,7 @@
 		1D45159D1E73AEE6000C895D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1D4516831E732D5000054A94 /* PlatformGame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlatformGame.h; sourceTree = "<group>"; };
 		1D4516841E732E0D00054A94 /* PlatformGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlatformGame.m; sourceTree = "<group>"; };
+		1D7092AA1EBB63B6000DDA46 /* IGDBBR.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = IGDBBR.entitlements; sourceTree = "<group>"; };
 		1D877A231E660152002D22D0 /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
 		1D877A251E660521002D22D0 /* ListaViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListaViewController.xib; sourceTree = "<group>"; };
 		1D877A271E660570002D22D0 /* ListaViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListaViewController.h; sourceTree = "<group>"; };
@@ -226,6 +227,7 @@
 		1DCBE73C1E5F8A07001FF97C /* IGDBBR */ = {
 			isa = PBXGroup;
 			children = (
+				1D7092AA1EBB63B6000DDA46 /* IGDBBR.entitlements */,
 				3B855E391E97FB60003AFA5E /* ImageView */,
 				1D4515961E6A10A8000C895D /* ListaViewCell.h */,
 				1D4515971E6A110A000C895D /* ListaViewCell.m */,
@@ -372,6 +374,11 @@
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 5JGB867K6F;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -615,6 +622,7 @@
 			baseConfigurationReference = C888D3616C026E10915D10ED /* Pods-IGDBBR.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = IGDBBR/IGDBBR.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 5JGB867K6F;
 				INFOPLIST_FILE = IGDBBR/Info.plist;
@@ -634,6 +642,7 @@
 			baseConfigurationReference = DFFFFA5130A733B639C34C7E /* Pods-IGDBBR.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = IGDBBR/IGDBBR.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 5JGB867K6F;
 				INFOPLIST_FILE = IGDBBR/Info.plist;
