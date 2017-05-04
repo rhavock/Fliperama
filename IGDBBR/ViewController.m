@@ -95,29 +95,43 @@ static NSString *const kBannerAdUnitID = @"ca-app-pub-6564053570683791/132162206
 - (void)didSwipe:(UISwipeGestureRecognizer*)swipe{
     
     if (swipe.direction == UISwipeGestureRecognizerDirectionLeft) {
-        if((self.index + 1) >= self.totalCount){
-            self.index = 0;
-        }
-        [UIView animateWithDuration:0.5
+       
+        [UIView animateWithDuration:0.3
                          animations:^{
                              self.imgsly.transform = CGAffineTransformMakeTranslation( - self.imgsly.layer.frame.size.width +10, 0);
                          }
                          completion:^(BOOL finished){
-                             self.imgsly.image = _datasource[++self.index];
+                             self.index++;
+                             if(self.index >= self.totalCount){
+                                 self.index = 0;
+                             }
+                             if(self.index + 1 >= self.totalCount)
+                                 self.imgslyback.image = _datasource[1];
+                             else
+                                 self.imgslyback.image = _datasource[self.index +1];
+                                
+                             self.imgsly.image = _datasource[self.index];
+                             
                              _page.currentPage = 	self.index;
+                             
                              self.imgsly.transform = CGAffineTransformMakeTranslation(0, 0);
                          }];
         NSLog(@"Swipe Left");
     } else if (swipe.direction == UISwipeGestureRecognizerDirectionRight) {
         if(self.index > 0){
             
-            [UIView animateWithDuration:0.5
+            [UIView animateWithDuration:0.2
                              animations:^{
                                  self.imgsly.transform = CGAffineTransformMakeTranslation(self.imgsly.layer.frame.size.width +10, 0);
                              }
                              completion:^(BOOL finished){
-                                 self.imgsly.image = _datasource[--self.index];
+                                 self.index--;
+                                 if(self.index -1 >= 0)
+                                     self.imgslyback.image = _datasource[self.index-1];
+                                 self.imgsly.image = _datasource[self.index];
                                  _page.currentPage = 	self.index;
+                                 
+                                 
                                  self.imgsly.transform = CGAffineTransformMakeTranslation(0, 0);
                              }];
         }
@@ -129,7 +143,7 @@ static NSString *const kBannerAdUnitID = @"ca-app-pub-6564053570683791/132162206
     self.nota.textAlignment = NSTextAlignmentCenter;
     self.nota.layer.borderWidth = 2;
     self.nota.layer.borderColor = [UIColor greenColor].CGColor;
-    self.nota.layer.backgroundColor = [UIColor whiteColor].CGColor;
+    self.nota.layer.backgroundColor = [UIColor clearColor].CGColor;
     int Nota = [game.rating intValue];
     self.nota.text = [NSString stringWithFormat:@"%d", Nota];
 }
@@ -137,7 +151,7 @@ static NSString *const kBannerAdUnitID = @"ca-app-pub-6564053570683791/132162206
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
-    self.scrollview.contentSize = CGSizeMake(0,2000);
+    self.scrollview.contentSize = CGSizeMake(0,1500);
     
 }
 -(void)tapDetected{
@@ -221,8 +235,7 @@ static NSString *const kBannerAdUnitID = @"ca-app-pub-6564053570683791/132162206
     NSMutableArray<UIImage*> *source = [[NSMutableArray<UIImage*> alloc]init];
     _datasource = source;
     if([game.screenshots count] == 0){
-        [_datasource addObject:[UIImage imageNamed:@"naotem"]];
-        [_slideshow reloadData];
+         self.imgsly.image = [UIImage imageNamed:@"naotem"];
         return;
     }
     
@@ -230,7 +243,9 @@ static NSString *const kBannerAdUnitID = @"ca-app-pub-6564053570683791/132162206
     for(Screenshots *screen in game.screenshots){
         [game imageUrl:screen.url tamanhoImagem:screenshot_huge retornoImagem:^(UIImage *image) {
             self.imgsly.image = image;
-            self.index = 0;
+            self.imgslyback.image = image;
+            self.index=0;
+            
             [_datasource addObject:image];
             _page.numberOfPages =++self.totalCount;
             [self.loadingimages stopAnimating];
@@ -242,22 +257,4 @@ static NSString *const kBannerAdUnitID = @"ca-app-pub-6564053570683791/132162206
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-#pragma mark - KASlideShow datasource
-
-- (NSObject *)slideShow:(KASlideShow *)slideShow objectAtIndex:(NSUInteger)index
-{
-    
-    _page.numberOfPages =_datasource.count;
-    _page.currentPage = 	index;
-    return _datasource[index];
-}
-
-- (NSUInteger)slideShowImagesNumber:(KASlideShow *)slideShow
-{
-    return _datasource.count;
-}
-
-
-
 @end

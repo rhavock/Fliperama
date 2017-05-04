@@ -28,6 +28,7 @@
 @property (nonatomic, strong) IBOutlet UIView *viewRating;
 @property (nonatomic, strong) IBOutlet UIView *sly;
 @property (nonatomic, strong) IBOutlet UIImageView * imgsly;
+@property (nonatomic, strong) IBOutlet UIImageView * imgslyback;
 @property (nonatomic) int index;
 @property (nonatomic) int totalCount;
 
