@@ -173,8 +173,7 @@
     NSString* resultado = [stringima stringByReplacingOccurrencesOfString:@"t_thumb"
                                                                withString:[self enumToText:tamanhoImagem]];
     NSURL *imgURL = [NSURL URLWithString:resultado];
-    
-    
+
     [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:imgURL] queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         if (!connectionError) {
             UIImage *img = [[UIImage alloc] initWithData:data];

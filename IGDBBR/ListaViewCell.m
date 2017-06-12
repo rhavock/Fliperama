@@ -28,24 +28,26 @@
 }
 
 - (void)setImageCover {
-    if([_game.screenshots count] > 0){
-        [[Game alloc] imageUrl:_game.screenshots[0].url tamanhoImagem:screenshot_big retornoImagem:^(UIImage *imagen) {
-            @try {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    if(imagen ==nil){
-                        _imgBack.image = [UIImage imageNamed:@"naotem"];
-                        return;
-                    }
-                    
-                    _imgBack.image = imagen;
-                });
-            } @catch (NSException * e) {
-                NSLog(@"Exception: %@", e);
-            }
-        }];
-    }else{
-        _imgBack.image = [UIImage imageNamed:@"naotem"];
-    }
+    
+    //dispatch_async(dispatch_get_main_queue(), ^{
+        
+        if([_game.screenshots count] == 0){
+            _imgBack.image = [UIImage imageNamed:@"naotem"];
+            return;
+        }
+        NSString* stringima = [NSString stringWithFormat:@"http:%@", _game.screenshots[0].url];
+        NSString* resultado = [stringima stringByReplacingOccurrencesOfString:@"t_thumb"
+                                                                   withString:@"t_screenshot_big"];
+        resultado = [resultado stringByReplacingOccurrencesOfString:@".png"
+                                                         withString:@".jpg"];
+
+        NSURL *imgURL = [NSURL URLWithString:resultado];
+        
+        UIImage *image = [UIImage imageWithData:UIImageJPEGRepresentation([UIImage imageWithData:[NSData dataWithContentsOfURL:imgURL]],0.1)];
+        if(image != nil)
+            self.imgBack.image = image;
+        
+   // });
     
     imagem.layer.shadowColor = [UIColor blackColor].CGColor;
     imagem.layer.shadowOffset = CGSizeMake(1.0, 1.0);
@@ -91,9 +93,9 @@
     imagem.image = nil;
     genero.text = nil;
     
-    [self setImageCover];
-    [self setPlatforms];
-    [self setGenero];
+   // [self setImageCover];
+    //[self setPlatforms];
+    //[self setGenero];
     
 }
 -(void)setPlatforms{

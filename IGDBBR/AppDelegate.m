@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import "ListaViewController.h"
 #import "ViewController.h"
+#import "HomeSearchViewController.h"
+
 @import Firebase;
 
 @interface AppDelegate ()
@@ -22,7 +24,7 @@
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    ListaViewController *viewController = [[ListaViewController alloc] initWithNibName:@"ListaViewController" bundle:nil];
+    HomeSearchViewController *viewController = [[HomeSearchViewController alloc] initWithNibName:@"HomeSearchViewController" bundle:nil];
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:viewController];
     self.window.rootViewController = nav;
     [self.window makeKeyAndVisible];

@@ -13,5 +13,5 @@
 @property (nonatomic, strong) NSMutableArray *platforms;
 
 -(Game*)getPlatformByGameId:(Game*)game;
--(NSArray*)getPlatformByGameIdBase:(int)offSet;
+-(NSArray*)getPlatformByGameIdBase:(NSNumber*)gameID;
 @end

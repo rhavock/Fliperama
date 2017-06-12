@@ -54,6 +54,9 @@
 		3B855E3E1E97FBF0003AFA5E /* ImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B855E3D1E97FBF0003AFA5E /* ImageViewController.xib */; };
 		3BBB4E4F1E8979BE009FCC68 /* DBConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BBB4E4E1E8979BE009FCC68 /* DBConnection.m */; };
 		3BBB4E521E8AF1A2009FCC68 /* Defaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BBB4E511E8AF1A2009FCC68 /* Defaults.m */; };
+		D66B82C31EEF175700AC4D3F /* EngineSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = D66B82C21EEF175700AC4D3F /* EngineSearch.m */; };
+		D6A475A71EE9B6630078098E /* HomeSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6A475A61EE9B6630078098E /* HomeSearchViewController.m */; };
+		D6A475A91EE9B6850078098E /* HomeSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6A475A81EE9B6850078098E /* HomeSearchViewController.xib */; };
 		FCC58CC20B09DDFF2BE7F832 /* libPods-IGDBBR.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DF77F93E5D4306E712A92D5B /* libPods-IGDBBR.a */; };
 /* End PBXBuildFile section */
 
@@ -149,6 +152,12 @@
 		3BBB4E501E8AF1A2009FCC68 /* Defaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Defaults.h; sourceTree = "<group>"; };
 		3BBB4E511E8AF1A2009FCC68 /* Defaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Defaults.m; sourceTree = "<group>"; };
 		C888D3616C026E10915D10ED /* Pods-IGDBBR.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IGDBBR.debug.xcconfig"; path = "Pods/Target Support Files/Pods-IGDBBR/Pods-IGDBBR.debug.xcconfig"; sourceTree = "<group>"; };
+		D66B82C11EEF175700AC4D3F /* EngineSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EngineSearch.h; sourceTree = "<group>"; };
+		D66B82C21EEF175700AC4D3F /* EngineSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EngineSearch.m; sourceTree = "<group>"; };
+		D66B82C51EEF1B0300AC4D3F /* EngineSearchProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EngineSearchProtocol.h; sourceTree = "<group>"; };
+		D6A475A51EE9B6630078098E /* HomeSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeSearchViewController.h; sourceTree = "<group>"; };
+		D6A475A61EE9B6630078098E /* HomeSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeSearchViewController.m; sourceTree = "<group>"; };
+		D6A475A81EE9B6850078098E /* HomeSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeSearchViewController.xib; sourceTree = "<group>"; };
 		DF77F93E5D4306E712A92D5B /* libPods-IGDBBR.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-IGDBBR.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFFFFA5130A733B639C34C7E /* Pods-IGDBBR.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IGDBBR.release.xcconfig"; path = "Pods/Target Support Files/Pods-IGDBBR/Pods-IGDBBR.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -207,6 +216,7 @@
 		1DCBE7311E5F8A07001FF97C = {
 			isa = PBXGroup;
 			children = (
+				D66B82C41EEF1AB200AC4D3F /* EngineSearch */,
 				1DCBE7651E608D88001FF97C /* Domain */,
 				3BBB4E4C1E89799D009FCC68 /* Infra */,
 				1DCBE73C1E5F8A07001FF97C /* IGDBBR */,
@@ -227,6 +237,9 @@
 		1DCBE73C1E5F8A07001FF97C /* IGDBBR */ = {
 			isa = PBXGroup;
 			children = (
+				D6A475A51EE9B6630078098E /* HomeSearchViewController.h */,
+				D6A475A61EE9B6630078098E /* HomeSearchViewController.m */,
+				D6A475A81EE9B6850078098E /* HomeSearchViewController.xib */,
 				1D7092AA1EBB63B6000DDA46 /* IGDBBR.entitlements */,
 				3B855E391E97FB60003AFA5E /* ImageView */,
 				1D4515961E6A10A8000C895D /* ListaViewCell.h */,
@@ -338,6 +351,16 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		D66B82C41EEF1AB200AC4D3F /* EngineSearch */ = {
+			isa = PBXGroup;
+			children = (
+				D66B82C51EEF1B0300AC4D3F /* EngineSearchProtocol.h */,
+				D66B82C11EEF175700AC4D3F /* EngineSearch.h */,
+				D66B82C21EEF175700AC4D3F /* EngineSearch.m */,
+			);
+			name = EngineSearch;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -408,6 +431,7 @@
 				3B855E3E1E97FBF0003AFA5E /* ImageViewController.xib in Resources */,
 				1DCBE74D1E5F8A07001FF97C /* LaunchScreen.storyboard in Resources */,
 				1DCBE74A1E5F8A07001FF97C /* Assets.xcassets in Resources */,
+				D6A475A91EE9B6850078098E /* HomeSearchViewController.xib in Resources */,
 				1D45159A1E6A114F000C895D /* ListaViewCell.xib in Resources */,
 				1D877A261E660521002D22D0 /* ListaViewController.xib in Resources */,
 				1D877A241E660152002D22D0 /* ViewController.xib in Resources */,
@@ -482,6 +506,7 @@
 				1DCBE7751E608E5A001FF97C /* AlternativeNames.m in Sources */,
 				1DCBE7711E608E2D001FF97C /* GameModes.m in Sources */,
 				1D4516851E732E0D00054A94 /* PlatformGame.m in Sources */,
+				D6A475A71EE9B6630078098E /* HomeSearchViewController.m in Sources */,
 				1D1931141E6362B90037B7C9 /* SDWebImagePrefetcher.m in Sources */,
 				1D1931191E6362B90037B7C9 /* UIImageView+WebCache.m in Sources */,
 				3BBB4E521E8AF1A2009FCC68 /* Defaults.m in Sources */,
@@ -498,6 +523,7 @@
 				1DCBE7791E608EB2001FF97C /* Screenshots.m in Sources */,
 				1D19310E1E6362B90037B7C9 /* SDImageCache.m in Sources */,
 				1D1931111E6362B90037B7C9 /* SDWebImageDownloader.m in Sources */,
+				D66B82C31EEF175700AC4D3F /* EngineSearch.m in Sources */,
 				1DCBE7691E608DC2001FF97C /* Themes.m in Sources */,
 				1DCBE7771E608E6F001FF97C /* Developers.m in Sources */,
 				1D1931171E6362B90037B7C9 /* UIImage+MultiFormat.m in Sources */,

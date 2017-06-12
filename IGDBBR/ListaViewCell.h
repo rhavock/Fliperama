@@ -11,5 +11,6 @@
 @property (nonatomic, weak)IBOutlet UIActivityIndicatorView *loadingImage;
 @property (nonatomic, weak)IBOutlet UIImageView *imgBack;
 @property (nonatomic, weak)IBOutlet UILabel *rating;
+@property (nonatomic, strong) IBOutlet UIActivityIndicatorView* loading;
 -(void)setInfo:(Game*)game;
 @end

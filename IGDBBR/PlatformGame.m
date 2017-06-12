@@ -19,17 +19,27 @@
 -(Game*)getPlatformByGameId:(Game*)game{
     
     PlatformGame *plata = [[PlatformGame alloc]init];
-    plata.name = [Utils getWithId:game.id];
+    NSString *plataformas = [[NSString alloc]init];
+    NSArray *plats = [self getPlatformByGameIdBase:game.id];
+    for (int i = 0; i < plats.count; i++) {
+        if(i == (plats.count - 1)){
+          plataformas =  [plataformas stringByAppendingString:((PlatformGame*)plats[i]).name];
+        }else{
+            plataformas = [plataformas stringByAppendingString:[NSString stringWithFormat:@"%@/",((PlatformGame*)plats[i]).name]];
+        }
+    }
+    
+    plata.name = plataformas;
     
     game.platformGame = plata;
     return game;
 }
 
--(NSArray*)getPlatformByGameIdBase:(int)offSet{
-    NSLog(@"offset %d",offSet);
+-(NSArray*)getPlatformByGameIdBase:(NSNumber*)gameID{
+    
     NSDictionary *headers = @{@"X-Mashape-Key": @"4rOn6YnZSUmshbDr9NmN7tmEyQMap1djcEZjsnyI4cg6fo4nMv"};
     UNIHTTPJsonResponse *response = [[UNIRest get:^(UNISimpleRequest *request) {
-        [request setUrl:[NSString stringWithFormat:@"https://igdbcom-internet-game-database-v1.p.mashape.com/platforms/?fields=*&limit=10&offset=%d",offSet]];
+        [request setUrl:[NSString stringWithFormat:@"https://igdbcom-internet-game-database-v1.p.mashape.com/platforms/?fields=*&limit=50&offset=1&filter[games][eq]=%@",gameID]];
         [request setHeaders:headers];
     }] asJson];
     
