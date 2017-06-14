@@ -30,7 +30,7 @@
     
     NSDictionary *headers = @{@"X-Mashape-Key": @"4rOn6YnZSUmshbDr9NmN7tmEyQMap1djcEZjsnyI4cg6fo4nMv", @"Accept": @"application/json"};
     [[UNIRest get:^(UNISimpleRequest *request) {
-        NSString *url = [NSString stringWithFormat:@"https://igdbcom-internet-game-database-v1.p.mashape.com/games/?fields=*&limit=50&offset=0&search=%@",search];
+        NSString *url = [NSString stringWithFormat:@"https://igdbcom-internet-game-database-v1.p.mashape.com/games/?fields=*&limit=50&offset=0&search='%@'",search];
         [request setUrl:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
         [request setHeaders:headers];
     }]asJsonAsync:^(UNIHTTPJsonResponse *response, NSError *error) {
@@ -79,6 +79,22 @@
     [self loadGamesBySort:@"popularity" callback:^(NSArray<Game *> *games) {
         callback(games);
     }];
+}
+
+-(void)loadGamesByGenreSortLimit:(NSString *)filter limit:(NSString *)limit sort:(NSString *)sort callback:(void (^)(NSArray<Game *> *))callback{
+    NSDictionary *headers = @{@"X-Mashape-Key": @"4rOn6YnZSUmshbDr9NmN7tmEyQMap1djcEZjsnyI4cg6fo4nMv", @"Accept": @"application/json"};
+    [[UNIRest get:^(UNISimpleRequest *request) {
+        NSString *url = [NSString stringWithFormat:@"https://igdbcom-internet-game-database-v1.p.mashape.com/games/?fields=*&limit=%@&order=%@:desc&filter[genres][eq]=%@",limit,sort,filter];
+        NSLog(@"%@", url);
+        [request setUrl:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        [request setHeaders:headers];
+    }]asJsonAsync:^(UNIHTTPJsonResponse *response, NSError *error) {
+        UNIJsonNode *body = response.body;
+        
+        callback([self convertToDomain:body]);
+        
+    }];
+
 }
 
 -(NSArray*)convertToDomain:(UNIJsonNode*)response{

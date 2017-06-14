@@ -23,14 +23,14 @@ static NSString *const kInterstitialAdUnitID = @"ca-app-pub-6564053570683791/848
 @synthesize table;
 - (void)loadGames {
     [self.loading startAnimating];
-    [[Game alloc]loadGames:^(NSArray<Game *> *games) {
-        items = games;
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
+//    [[Game alloc]loadGames:^(NSArray<Game *> *games) {
+//        items = games;
+//        
+//        dispatch_async(dispatch_get_main_queue(), ^{
             [table reloadData];
             [self.loading stopAnimating];
-        });
-    }];
+//        });
+//    }];
     
 }
 
@@ -41,16 +41,16 @@ static NSString *const kInterstitialAdUnitID = @"ca-app-pub-6564053570683791/848
     //self.interstitial = [self createAndLoadInterstitial];
       
 
-    menu = [[KYGooeyMenu alloc]initWithOrigin:CGPointMake(CGRectGetMidX(self.viewMenu.frame)-20, self.viewMenu.frame.origin.y-10) andDiameter:50.0f andDelegate:self themeColor:[UIColor colorWithRed:51/255.0 green:204/255.0 blue:255/255.0 alpha:1.5f ]];
-    menu.radius = 80/4;
-    menu.extraDistance = 20;
-    menu.MenuCount = 3;
-    menu.menuDelegate = self;
-    
-    menu.menuImagesArray = [NSMutableArray arrayWithObjects:
-                            [UIImage imageNamed:@"recent"],
-                            [UIImage imageNamed:@"popular"],
-                            [UIImage imageNamed:@"trophy-icon"], nil];
+//    menu = [[KYGooeyMenu alloc]initWithOrigin:CGPointMake(CGRectGetMidX(self.viewMenu.frame)-20, self.viewMenu.frame.origin.y-10) andDiameter:50.0f andDelegate:self themeColor:[UIColor colorWithRed:51/255.0 green:204/255.0 blue:255/255.0 alpha:1.5f ]];
+//    menu.radius = 80/4;
+//    menu.extraDistance = 20;
+//    menu.MenuCount = 3;
+//    menu.menuDelegate = self;
+//    
+//    menu.menuImagesArray = [NSMutableArray arrayWithObjects:
+//                            [UIImage imageNamed:@"recent"],
+//                            [UIImage imageNamed:@"popular"],
+//                            [UIImage imageNamed:@"trophy-icon"], nil];
     
     [self.texto setReturnKeyType:UIReturnKeyDone];
     self.texto.delegate = self;
@@ -104,7 +104,7 @@ static NSString *const kInterstitialAdUnitID = @"ca-app-pub-6564053570683791/848
     Game *game = [items objectAtIndex:indexPath.row];
     PlatformGame *plats = [[PlatformGame alloc]init];
     [self.loading startAnimating];
-    game = [plats getPlatformByGameId:game];
+    //game = [plats getPlatformByGameId:game];
     [cell setInfo:game];
     [self.loading stopAnimating];
     return cell;

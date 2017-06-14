@@ -24,4 +24,15 @@
     }];
 }
 
+-(void)getGenreByName:(NSString*)genreString callback:(void(^)(NSString* response))callback{
+    NSDictionary *headers = @{@"X-Mashape-Key": @"4rOn6YnZSUmshbDr9NmN7tmEyQMap1djcEZjsnyI4cg6fo4nMv"};
+    UNIUrlConnection *asyncConnection = [[UNIRest get:^(UNISimpleRequest *request) {
+        [request setUrl:[NSString stringWithFormat:@"https://igdbcom-internet-game-database-v1.p.mashape.com/genres/?fields=*&filter[name][eq]=%@",genreString]];
+        [request setHeaders:headers];
+    }] asJsonAsync:^(UNIHTTPJsonResponse *response, NSError *error) {
+        UNIJsonNode *body = response.body;
+        _id = body.array[0][@"id"];
+        callback(_id);
+    }];
+}
 @end

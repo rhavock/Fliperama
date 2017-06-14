@@ -1,16 +1,14 @@
 //
-//  EngineSearch.h
+//  ComplexSearchGame.h
 //  IGDBBR
 //
-//  Created by Rodrigo Heleno on 12/06/17.
+//  Created by resource on 14/06/17.
 //  Copyright © 2017 RodrigoHeleno. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import "EngineSearchProtocol.h"
 
-@interface EngineSearch : NSObject<EngineSearchProtocol>
-
-
+@interface ComplexSearchGame : NSObject<EngineSearchProtocol>
 
 @end

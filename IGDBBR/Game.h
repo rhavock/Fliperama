@@ -56,10 +56,12 @@ typedef enum TamanhoImagem{
 @property (nonatomic, strong) NSArray<Esrb*>* esrb;
 @property (nonatomic, strong) Pegi* pegi;
 @property (nonatomic, strong) PlatformGame* platformGame;
+@property (nonatomic, strong) UIImage *imageBack;
 
 -(void)loadGamesById:(NSNumber*)id callback:(void(^)(Game* game))callback;
 -(void)loadGames:(void(^)(NSArray<Game*>* games))callback;
 -(void)loadGamesByName:(NSString*)search callback:(void(^)(NSArray<Game*>* games))callback;
 -(void)loadGamesBySort:(NSString*)sort callback:(void(^)(NSArray<Game*>* games))callback;
+-(void)loadGamesByGenreSortLimit:(NSString*)filter limit:(NSString*)limit sort:(NSString*)sort callback:(void(^)(NSArray<Game*>* games))callback;
 - (void)imageUrl:(NSString *)stringimagem tamanhoImagem:(TamanhoImagem)tamanhoImagem retornoImagem:(void(^)(UIImage* image))retornoImagem;
 @end

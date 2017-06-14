@@ -29,25 +29,33 @@
 
 - (void)setImageCover {
     
-    //dispatch_async(dispatch_get_main_queue(), ^{
+    if(_game.imageBack == nil){
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
         
         if([_game.screenshots count] == 0){
             _imgBack.image = [UIImage imageNamed:@"naotem"];
+            _game.imageBack = [UIImage imageNamed:@"naotem"];
             return;
         }
         NSString* stringima = [NSString stringWithFormat:@"http:%@", _game.screenshots[0].url];
         NSString* resultado = [stringima stringByReplacingOccurrencesOfString:@"t_thumb"
-                                                                   withString:@"t_screenshot_big"];
+                                                                   withString:@"t_screenshot_med"];
         resultado = [resultado stringByReplacingOccurrencesOfString:@".png"
                                                          withString:@".jpg"];
 
         NSURL *imgURL = [NSURL URLWithString:resultado];
         
         UIImage *image = [UIImage imageWithData:UIImageJPEGRepresentation([UIImage imageWithData:[NSData dataWithContentsOfURL:imgURL]],0.1)];
-        if(image != nil)
+        if(image != nil){
             self.imgBack.image = image;
-        
-   // });
+            _game.imageBack = image;
+        }
+    });
+    }else{
+        self.imgBack.image = _game.imageBack;
+    }
+    
     
     imagem.layer.shadowColor = [UIColor blackColor].CGColor;
     imagem.layer.shadowOffset = CGSizeMake(1.0, 1.0);
@@ -93,7 +101,7 @@
     imagem.image = nil;
     genero.text = nil;
     
-   // [self setImageCover];
+    [self setImageCover];
     //[self setPlatforms];
     //[self setGenero];
     

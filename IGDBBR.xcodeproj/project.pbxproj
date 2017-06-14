@@ -29,6 +29,8 @@
 		1D877A241E660152002D22D0 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D877A231E660152002D22D0 /* ViewController.xib */; };
 		1D877A261E660521002D22D0 /* ListaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D877A251E660521002D22D0 /* ListaViewController.xib */; };
 		1D877A291E660698002D22D0 /* ListaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D877A281E660698002D22D0 /* ListaViewController.m */; };
+		1DA457A91EF1B25E00B2F485 /* SimpleSearchGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DA457A81EF1B25E00B2F485 /* SimpleSearchGame.m */; };
+		1DA457AC1EF1CEBB00B2F485 /* ComplexSearchGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DA457AB1EF1CEBB00B2F485 /* ComplexSearchGame.m */; };
 		1DCBE73F1E5F8A07001FF97C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DCBE73E1E5F8A07001FF97C /* main.m */; };
 		1DCBE7421E5F8A07001FF97C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DCBE7411E5F8A07001FF97C /* AppDelegate.m */; };
 		1DCBE7451E5F8A07001FF97C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DCBE7441E5F8A07001FF97C /* ViewController.m */; };
@@ -103,6 +105,10 @@
 		1D877A251E660521002D22D0 /* ListaViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListaViewController.xib; sourceTree = "<group>"; };
 		1D877A271E660570002D22D0 /* ListaViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListaViewController.h; sourceTree = "<group>"; };
 		1D877A281E660698002D22D0 /* ListaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListaViewController.m; sourceTree = "<group>"; };
+		1DA457A71EF1B25E00B2F485 /* SimpleSearchGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleSearchGame.h; sourceTree = "<group>"; };
+		1DA457A81EF1B25E00B2F485 /* SimpleSearchGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleSearchGame.m; sourceTree = "<group>"; };
+		1DA457AA1EF1CEBB00B2F485 /* ComplexSearchGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComplexSearchGame.h; sourceTree = "<group>"; };
+		1DA457AB1EF1CEBB00B2F485 /* ComplexSearchGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComplexSearchGame.m; sourceTree = "<group>"; };
 		1DCBE73A1E5F8A07001FF97C /* IGDBBR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IGDBBR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DCBE73E1E5F8A07001FF97C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1DCBE7401E5F8A07001FF97C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -240,6 +246,10 @@
 				D6A475A51EE9B6630078098E /* HomeSearchViewController.h */,
 				D6A475A61EE9B6630078098E /* HomeSearchViewController.m */,
 				D6A475A81EE9B6850078098E /* HomeSearchViewController.xib */,
+				1DA457AA1EF1CEBB00B2F485 /* ComplexSearchGame.h */,
+				1DA457AB1EF1CEBB00B2F485 /* ComplexSearchGame.m */,
+				1DA457A71EF1B25E00B2F485 /* SimpleSearchGame.h */,
+				1DA457A81EF1B25E00B2F485 /* SimpleSearchGame.m */,
 				1D7092AA1EBB63B6000DDA46 /* IGDBBR.entitlements */,
 				3B855E391E97FB60003AFA5E /* ImageView */,
 				1D4515961E6A10A8000C895D /* ListaViewCell.h */,
@@ -500,6 +510,7 @@
 				1DD2F3FB1E9FEDB400862971 /* Utils.m in Sources */,
 				1DCBE76D1E608DF6001FF97C /* PlayerPerspectives.m in Sources */,
 				1D19311A1E6362B90037B7C9 /* UIView+WebCacheOperation.m in Sources */,
+				1DA457A91EF1B25E00B2F485 /* SimpleSearchGame.m in Sources */,
 				1DCBE7421E5F8A07001FF97C /* AppDelegate.m in Sources */,
 				1D1931131E6362B90037B7C9 /* SDWebImageManager.m in Sources */,
 				1D1931101E6362B90037B7C9 /* SDWebImageDecoder.m in Sources */,
@@ -515,6 +526,7 @@
 				1DCBE7671E608DA0001FF97C /* Genres.m in Sources */,
 				1DCBE77B1E608EC5001FF97C /* Videos.m in Sources */,
 				3B855E3C1E97FBCE003AFA5E /* ImageViewController.m in Sources */,
+				1DA457AC1EF1CEBB00B2F485 /* ComplexSearchGame.m in Sources */,
 				1DCBE77F1E608EF0001FF97C /* Esrb.m in Sources */,
 				1D1931161E6362B90037B7C9 /* UIImage+GIF.m in Sources */,
 				1D19310D1E6362B90037B7C9 /* NSData+ImageContentType.m in Sources */,
