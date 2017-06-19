@@ -32,7 +32,8 @@
                 limit = sort[1];
             }
             
-            [[Genres new]getGenreByName:sort[2] callback:^(NSString *response) {
+            
+            [[Genres new]getGenreByName:[sort[2] capitalizedString]  callback:^(NSString *response) {
                 NSString *filter = [NSString new];
                 filter = response;
                 [[Game new]loadGamesByGenreSortLimit:filter limit:limit sort:@"rating" callback:^(NSArray<Game*>* games){

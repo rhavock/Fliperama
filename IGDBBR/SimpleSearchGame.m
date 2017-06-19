@@ -18,7 +18,10 @@
         
         NSArray<Game*> *array = [games filteredArrayUsingPredicate:predicate];
         
-        executionBlock(array);
+        if(array.count == 0 && games.count > 0)
+            executionBlock(games);
+        else
+            executionBlock(array);
     }];
 }
 

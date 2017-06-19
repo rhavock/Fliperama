@@ -94,7 +94,7 @@
         callback([self convertToDomain:body]);
         
     }];
-
+    
 }
 
 -(NSArray*)convertToDomain:(UNIJsonNode*)response{
@@ -110,8 +110,8 @@
         game.genres= response.array[i][@"genres"];
         if(game.pegi == nil)
             continue;
-        if(game.summary == nil)
-            continue;
+//        if(game.summary == nil)
+//            continue;
         if(game.name == nil)
             continue;
         if(game.genres == nil)
@@ -125,8 +125,8 @@
             if([game.storyline containsString:word])
                 loopLeft = YES;
         }
-       if(loopLeft)
-           continue;
+        if(loopLeft)
+            continue;
         
         game.id = response.array[i][@"id"];;
         game.slug= response.array[i][@"slug"];;
@@ -179,6 +179,25 @@
         cover.cloudinary_id = response.array[i][@"cover"][@"cloudinary_id"];
         game.cover = cover;
         //    _esrb= response.array[0][@"name"];;
+        
+        if([game.screenshots count] != 0){
+            
+            
+            NSString* stringima = [NSString stringWithFormat:@"http:%@", game.screenshots[0].url];
+            NSString* resultado = [stringima stringByReplacingOccurrencesOfString:@"t_thumb"
+                                                                       withString:@"t_screenshot_big"];
+            resultado = [resultado stringByReplacingOccurrencesOfString:@".png"
+                                                             withString:@".jpg"];
+            
+            NSURL *imgURL = [NSURL URLWithString:resultado];
+            
+            UIImage *image = [UIImage imageWithData:UIImageJPEGRepresentation([UIImage imageWithData:[NSData dataWithContentsOfURL:imgURL]],0.9)];
+            if(image != nil){
+                game.imageBack = image;
+            }
+        }else{
+            game.imageBack = [UIImage imageNamed:@"naotem"];
+        }
         [games addObject:game];
     }
     return games;
@@ -189,7 +208,7 @@
     NSString* resultado = [stringima stringByReplacingOccurrencesOfString:@"t_thumb"
                                                                withString:[self enumToText:tamanhoImagem]];
     NSURL *imgURL = [NSURL URLWithString:resultado];
-
+    
     [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:imgURL] queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         if (!connectionError) {
             UIImage *img = [[UIImage alloc] initWithData:data];
