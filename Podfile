@@ -9,6 +9,7 @@ target 'IGDBBR' do
   
   pod 'Unirest'
   pod 'KYGooeyMenu'
-pod 'Firebase/Core'
-pod 'Firebase/AdMob'
+  pod 'Firebase/Core'
+  pod 'Firebase/AdMob'
+  pod 'HCYoutubeParser'
 end

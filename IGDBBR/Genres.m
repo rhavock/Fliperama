@@ -12,16 +12,16 @@
 
 @implementation Genres
 
--(void)getGenreById:(NSString *)id callback:(void (^)(Genres *genre))callback{
+-(NSString*)getGenreById:(NSNumber *)generoID{
     NSDictionary *headers = @{@"X-Mashape-Key": @"4rOn6YnZSUmshbDr9NmN7tmEyQMap1djcEZjsnyI4cg6fo4nMv"};
-    UNIUrlConnection *asyncConnection = [[UNIRest get:^(UNISimpleRequest *request) {
-        [request setUrl:[NSString stringWithFormat:@"https://igdbcom-internet-game-database-v1.p.mashape.com/genres/%@?fields=*&limit=40",id]];
+    UNIHTTPJsonResponse *response = [[UNIRest get:^(UNISimpleRequest *request) {
+        [request setUrl:[NSString stringWithFormat:@"https://igdbcom-internet-game-database-v1.p.mashape.com/genres/%@?fields=*&limit=40",generoID]];
         [request setHeaders:headers];
-    }] asJsonAsync:^(UNIHTTPJsonResponse *response, NSError *error) {
+    }] asJson];
         UNIJsonNode *body = response.body;
-        _name = body.array[0][@"name"];
-        callback(self);
-    }];
+    
+    return body.array[0][@"name"];
+    
 }
 
 -(void)getGenreByName:(NSString*)genreString callback:(void(^)(NSString* response))callback{

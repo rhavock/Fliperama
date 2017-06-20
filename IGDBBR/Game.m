@@ -108,14 +108,14 @@
         game.name = response.array[i][@"name"];
         game.storyline= response.array[i][@"storyline"];
         game.genres= response.array[i][@"genres"];
-        if(game.pegi == nil)
-            continue;
-//        if(game.summary == nil)
-//            continue;
-        if(game.name == nil)
-            continue;
-        if(game.genres == nil)
-            continue;
+        //        if(game.pegi == nil)
+        //            continue;
+        //        if(game.summary == nil)
+        //            continue;
+        //        if(game.name == nil)
+        //            continue;
+        //        if(game.genres == nil)
+        //            continue;
         BOOL loopLeft = NO;
         for(NSString* word in badWords){
             if([game.summary containsString:word])
@@ -138,21 +138,12 @@
         game.collection= response.array[i][@"collection"];;
         game.hypes= response.array[i][@"hypes"];
         game.popularity= response.array[i][@"popularity"];
-        
-        //_developers= response.array[0][@"name"];;
-        //    _publishers= response.array[0][@"name"];;
         game.category= response.array[i][@"category"];;
-        //_playerPerspective= response.array[0][@"name"];;
-        //_gameModes= response.array[0][@"name"];;
-        //    _keywords= response.array[0][@"name"];;
-        //    _themes= response.array[0][@"name"];;
-        
         game.first_release_date= response.array[i][@"first_release_date"];
         NSMutableArray<ReleaseDates*> *releaseDates = [[NSMutableArray<ReleaseDates*> alloc]init];
         for (int y = 0; y < [response.array[i][@"release_dates"] count]; y++) {
             ReleaseDates* releaseD = [[ReleaseDates alloc]init];
             releaseD.category = response.array[i][@"release_dates"][y][@"category"];
-            //release.date = response.array[i][@"release_dates"][y][@"date"];
             releaseD.human = response.array[i][@"release_dates"][y][@"human"];
             releaseD.releasemonth = response.array[i][@"release_dates"][y][@"m"];
             releaseD.releaseyear = response.array[i][@"release_dates"][y][@"y"];
@@ -160,7 +151,6 @@
         }
         
         game.releasedates= releaseDates;
-        //    _alternativeNames= response.array[0][@"name"];;
         NSMutableArray<Screenshots*> *imagens = [[NSMutableArray<Screenshots*> alloc]init];
         for(int j=0;j < [response.array[i][@"screenshots"] count]; j++){
             Screenshots *screenshots = [[Screenshots alloc]init];
@@ -171,7 +161,14 @@
             [imagens addObject:screenshots];
         }
         game.screenshots = imagens;
-        //    _videos= response.array[0][@"name"];;
+        NSMutableArray *vidoes = [NSMutableArray new];
+        for (int l = 0; l < [response.array[i][@"videos"] count]; l++) {
+            Videos *video = [Videos new];
+            video.name = response.array[i][@"videos"][l][@"name"];
+            video.video_id = response.array[i][@"videos"][l][@"video_id"];
+            [vidoes addObject:video];
+        }
+        game.videos = vidoes;
         Cover *cover = [[Cover alloc]init];
         cover.url = response.array[i][@"cover"][@"url"];
         cover.width = response.array[i][@"cover"][@"width"];
@@ -180,27 +177,54 @@
         game.cover = cover;
         //    _esrb= response.array[0][@"name"];;
         
-        if([game.screenshots count] != 0){
-            
-            
-            NSString* stringima = [NSString stringWithFormat:@"http:%@", game.screenshots[0].url];
-            NSString* resultado = [stringima stringByReplacingOccurrencesOfString:@"t_thumb"
-                                                                       withString:@"t_screenshot_big"];
-            resultado = [resultado stringByReplacingOccurrencesOfString:@".png"
-                                                             withString:@".jpg"];
-            
-            NSURL *imgURL = [NSURL URLWithString:resultado];
-            
-            UIImage *image = [UIImage imageWithData:UIImageJPEGRepresentation([UIImage imageWithData:[NSData dataWithContentsOfURL:imgURL]],0.9)];
-            if(image != nil){
-                game.imageBack = image;
-            }
-        }else{
-            game.imageBack = [UIImage imageNamed:@"naotem"];
-        }
+        //game.platformGame = [self setPlatform:game];
+//        game.genreString = [self setGenre:game];
+        game.imageBack = [self setImage:game];
         [games addObject:game];
     }
     return games;
+}
+
+-(UIImage*)setImage:(Game*)game{
+    if([game.screenshots count] != 0){
+        
+        
+        NSString* stringima = [NSString stringWithFormat:@"http:%@", game.screenshots[0].url];
+        NSString* resultado = [stringima stringByReplacingOccurrencesOfString:@"t_thumb"
+                                                                   withString:@"t_screenshot_big"];
+        resultado = [resultado stringByReplacingOccurrencesOfString:@".png"
+                                                         withString:@".jpg"];
+        
+        NSURL *imgURL = [NSURL URLWithString:resultado];
+        
+        UIImage *image = [UIImage imageWithData:UIImageJPEGRepresentation([UIImage imageWithData:[NSData dataWithContentsOfURL:imgURL]],0.9)];
+        if(image != nil){
+            return image;
+        }
+    }
+    return [UIImage imageNamed:@"naotem"];
+    
+    
+}
+
+-(NSString*)setGenre:(Game*)game{
+    NSString* genero = @"";
+    for (int i = 0; i < game.genres.count; i++) {
+        if(i == (game.genres.count - 1)){
+            genero =  [genero stringByAppendingString:[[Genres alloc]getGenreById:game.genres[i]]];
+        }else{
+            genero = [genero stringByAppendingString:[NSString stringWithFormat:@"%@/",[[Genres alloc]getGenreById:game.genres[i]]]];
+        }
+        
+    }
+    return genero;
+    
+}
+-(PlatformGame*)setPlatform:(Game*)game{
+    PlatformGame *plat = [PlatformGame new];
+    plat.name =  [[PlatformGame alloc] getPlatformByGameIdBase:game.id];
+    
+    return plat;
 }
 
 - (void)imageUrl:(NSString *)stringimagem tamanhoImagem:(TamanhoImagem)tamanhoImagem retornoImagem:(void(^)(UIImage* image))retornoImagem {

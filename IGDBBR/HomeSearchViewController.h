@@ -9,9 +9,10 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface HomeSearchViewController : UIViewController
+@interface HomeSearchViewController : UIViewController<UITextFieldDelegate>
 
 
 @property (nonatomic, strong) IBOutlet UITextField *txtSearch;
+@property (nonatomic, strong) IBOutlet UIActivityIndicatorView * loading;
 
 @end

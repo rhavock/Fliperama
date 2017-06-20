@@ -29,6 +29,7 @@
 @property (nonatomic, strong) IBOutlet UIView *sly;
 @property (nonatomic, strong) IBOutlet UIImageView * imgsly;
 @property (nonatomic, strong) IBOutlet UIImageView * imgslyback;
+@property (nonatomic, strong)IBOutlet   UIImageView* thumbVideo;
 @property (nonatomic) int index;
 @property (nonatomic) int totalCount;
 

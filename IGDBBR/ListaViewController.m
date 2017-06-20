@@ -102,9 +102,7 @@ static NSString *const kInterstitialAdUnitID = @"ca-app-pub-6564053570683791/848
     }
     
     Game *game = [items objectAtIndex:indexPath.row];
-    PlatformGame *plats = [[PlatformGame alloc]init];
-    [self.loading startAnimating];
-    //game = [plats getPlatformByGameId:game];
+    [self.loading startAnimating];  
     [cell setInfo:game];
     [self.loading stopAnimating];
     return cell;

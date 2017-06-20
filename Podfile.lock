@@ -17,12 +17,14 @@ PODS:
   - GoogleToolboxForMac/Defines (2.1.1)
   - GoogleToolboxForMac/NSData+zlib (2.1.1):
     - GoogleToolboxForMac/Defines (= 2.1.1)
+  - HCYoutubeParser (0.0.5)
   - KYGooeyMenu (1.0.5)
   - Unirest (1.1.4)
 
 DEPENDENCIES:
   - Firebase/AdMob
   - Firebase/Core
+  - HCYoutubeParser
   - KYGooeyMenu
   - Unirest
 
@@ -33,9 +35,10 @@ SPEC CHECKSUMS:
   FirebaseInstanceID: 9fbf536668f4d3f0880e7438456dabd1376e294b
   Google-Mobile-Ads-SDK: 168312cdc167fa22746d4ea8e839fc4825dd2966
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
+  HCYoutubeParser: bc1db8c062e4b835eda381f2be2f9970f6a8d071
   KYGooeyMenu: 3d9f3504b59a5dd1b6c4ff34a06836284647a2aa
   Unirest: 5e4d93eaf32463bf619a4ecd3bbc8c32acf21eac
 
-PODFILE CHECKSUM: b26b9e93f450714123b23609c9d475186ad1dd7a
+PODFILE CHECKSUM: 52dba21aa3b057edee8ccab5a08f205da1c22a08
 
 COCOAPODS: 1.2.0

@@ -22,7 +22,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Fhw-Ul-LxW">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="715"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="668"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <color key="separatorColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
@@ -38,12 +38,12 @@
             </subviews>
             <color key="backgroundColor" red="0.098039215686274508" green="0.33333333333333331" blue="0.60784313725490191" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="yE5-ot-5VI" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="H4g-g7-Mr5"/>
-                <constraint firstItem="Fhw-Ul-LxW" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Uzh-os-upl"/>
-                <constraint firstItem="Fhw-Ul-LxW" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="az9-P4-Zbm"/>
-                <constraint firstItem="Fhw-Ul-LxW" firstAttribute="centerX" secondItem="yE5-ot-5VI" secondAttribute="centerX" id="edE-yc-NHQ"/>
-                <constraint firstAttribute="trailing" secondItem="Fhw-Ul-LxW" secondAttribute="trailing" id="fJf-L1-ZMC"/>
-                <constraint firstAttribute="bottom" secondItem="Fhw-Ul-LxW" secondAttribute="bottom" constant="-48" id="hJA-ie-WcA"/>
+                <constraint firstAttribute="trailing" secondItem="Fhw-Ul-LxW" secondAttribute="trailing" id="3AC-uU-IUr"/>
+                <constraint firstItem="Fhw-Ul-LxW" firstAttribute="centerX" secondItem="yE5-ot-5VI" secondAttribute="centerX" id="M8n-ga-dgV"/>
+                <constraint firstItem="Fhw-Ul-LxW" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Q5a-r8-hQv"/>
+                <constraint firstItem="Fhw-Ul-LxW" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="erc-LE-SeY"/>
+                <constraint firstItem="Fhw-Ul-LxW" firstAttribute="centerY" secondItem="yE5-ot-5VI" secondAttribute="centerY" id="j9W-Sa-DfA"/>
+                <constraint firstItem="Fhw-Ul-LxW" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="vPE-Hq-ANc"/>
             </constraints>
             <nil key="simulatedBottomBarMetrics"/>
             <point key="canvasLocation" x="30.5" y="93.5"/>

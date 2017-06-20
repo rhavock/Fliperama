@@ -12,6 +12,10 @@
 #import "KASlideShow.h"
 #import "PlatformGame.h"
 #import "ImageViewController.h"
+#import <MediaPlayer/MediaPlayer.h>
+#import "HCYoutubeParser.h"
+@import AVFoundation;
+@import AVKit;
 
 @import GoogleMobileAds;
 
@@ -53,6 +57,7 @@ static NSString *const kBannerAdUnitID = @"ca-app-pub-6564053570683791/132162206
     _summary.text = [game.summary stringByRemovingPercentEncoding];
     dispatch_async(dispatch_get_main_queue(), ^{
         _storyline.text = game.storyline;
+        [self.loadingdetalhes stopAnimating];
     });
     
     if(game.cover.url != nil){
@@ -79,11 +84,14 @@ static NSString *const kBannerAdUnitID = @"ca-app-pub-6564053570683791/132162206
     [self loadReleaseDate];
     [self loadRating];
     [self loadGenre];
+    [self loadVideos];
+    [self.loadingdetalhes stopAnimating];
+    [self.loading stopAnimating];
 }
 - (void)didSwipe:(UISwipeGestureRecognizer*)swipe{
     
     if (swipe.direction == UISwipeGestureRecognizerDirectionLeft) {
-       
+        
         [UIView animateWithDuration:0.3
                          animations:^{
                              self.imgsly.transform = CGAffineTransformMakeTranslation( - self.imgsly.layer.frame.size.width +10, 0);
@@ -97,7 +105,7 @@ static NSString *const kBannerAdUnitID = @"ca-app-pub-6564053570683791/132162206
                                  self.imgslyback.image = _datasource[1];
                              else
                                  self.imgslyback.image = _datasource[self.index +1];
-                                
+                             
                              self.imgsly.image = _datasource[self.index];
                              
                              _page.currentPage = 	self.index;
@@ -152,10 +160,7 @@ static NSString *const kBannerAdUnitID = @"ca-app-pub-6564053570683791/132162206
 }
 
 -(void)loadPlatform{
-    PlatformGame* plats = [[PlatformGame alloc]init];
-    game = [plats getPlatformByGameId:game];
-    
-    
+    game.platformGame = [game setPlatform:game];
     self.platform.text =game.platformGame.name;
     
 }
@@ -196,32 +201,20 @@ static NSString *const kBannerAdUnitID = @"ca-app-pub-6564053570683791/132162206
 }
 
 -(void)loadGenre{
-    Genres *genre = [[Genres alloc]init];
     NSString* genreId = (NSString*)game.genres[0];
     if(genreId != nil){
-        [genre getGenreById:genreId callback:^(Genres *genre) {
-            
-            @try {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    _genero.text = genre.name;
-                    [self.loading stopAnimating];
-                });
-            } @catch (NSException * e) {
-                NSLog(@"Exception: %@", e);
-            }
-            
-        }];
+        _genero.text = [self.game setGenre:self.game];
     }
 }
 
 -(void)loadCarousel{
     
     [self.loadingimages startAnimating];
-      
+    
     NSMutableArray<UIImage*> *source = [[NSMutableArray<UIImage*> alloc]init];
     _datasource = source;
     if([game.screenshots count] == 0){
-         self.imgsly.image = [UIImage imageNamed:@"naotem"];
+        self.imgsly.image = [UIImage imageNamed:@"naotem"];
         return;
     }
     
@@ -239,6 +232,35 @@ static NSString *const kBannerAdUnitID = @"ca-app-pub-6564053570683791/132162206
     }
 }
 
+-(void)loadVideos{
+    
+    NSURL * url = [[NSURL alloc]initWithString:[NSString stringWithFormat:@"%@%@",@"https://www.youtube.com/watch?v=",game.videos[0].video_id]];
+    
+    AVPlayer *player = [AVPlayer playerWithURL:url];
+
+    //NSDictionary *videos = [HCYoutubeParser h264videosWithYoutubeURL:url];
+    
+    
+    AVPlayerViewController *controller = [[AVPlayerViewController alloc] init];
+    [controller setPlayer:player];
+    [self presentViewController:controller animated:YES completion:nil];
+//    controller.player = player;
+//    [player play];
+    // To get a thumbnail for an image there is now a async method for that
+    [HCYoutubeParser thumbnailForYoutubeURL:url
+                              thumbnailSize:YouTubeThumbnailDefaultHighQuality
+                              completeBlock:^(UIImage *image, NSError *error) {
+                                  if (!error) {
+                                      self.thumbVideo.image = image;
+                                  }
+                                  else {
+                                      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+                                      [alert show];
+                                  }
+                              }];
+    
+    
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

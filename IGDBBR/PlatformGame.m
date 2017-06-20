@@ -18,24 +18,25 @@
 
 -(Game*)getPlatformByGameId:(Game*)game{
     
-    PlatformGame *plata = [[PlatformGame alloc]init];
-    NSString *plataformas = [[NSString alloc]init];
-    NSArray *plats = [self getPlatformByGameIdBase:game.id];
-    for (int i = 0; i < plats.count; i++) {
-        if(i == (plats.count - 1)){
-          plataformas =  [plataformas stringByAppendingString:((PlatformGame*)plats[i]).name];
-        }else{
-            plataformas = [plataformas stringByAppendingString:[NSString stringWithFormat:@"%@/",((PlatformGame*)plats[i]).name]];
-        }
-    }
-    
-    plata.name = plataformas;
-    
-    game.platformGame = plata;
-    return game;
+//    PlatformGame *plata = [[PlatformGame alloc]init];
+//    NSString *plataformas = [[NSString alloc]init];
+//    NSArray *plats = [self getPlatformByGameIdBase:game.id];
+//    for (int i = 0; i < plats.count; i++) {
+//        if(i == (plats.count - 1)){
+//            plataformas =  [plataformas stringByAppendingString:((PlatformGame*)plats[i]).name];
+//        }else{
+//            plataformas = [plataformas stringByAppendingString:[NSString stringWithFormat:@"%@/",((PlatformGame*)plats[i]).name]];
+//        }
+//    }
+//    
+//    plata.name = plataformas;
+//    
+//    game.platformGame = plata;
+//    return game;
+    return [Game new];
 }
 
--(NSArray*)getPlatformByGameIdBase:(NSNumber*)gameID{
+-(NSString*)getPlatformByGameIdBase:(NSNumber*)gameID{
     
     NSDictionary *headers = @{@"X-Mashape-Key": @"4rOn6YnZSUmshbDr9NmN7tmEyQMap1djcEZjsnyI4cg6fo4nMv"};
     UNIHTTPJsonResponse *response = [[UNIRest get:^(UNISimpleRequest *request) {
@@ -44,7 +45,16 @@
     }] asJson];
     
     UNIJsonNode *body = response.body;
-    return [self convertToDomain:body];
+    NSString* retorno = @"";
+    for (int i = 0; i < body.array.count; i++) {
+        if(i == (body.array.count - 1)){
+            retorno =  [retorno stringByAppendingString:body.array[i][@"name"]];
+        }else{
+            retorno = [retorno stringByAppendingString:[NSString stringWithFormat:@"%@/",body.array[i][@"name"]]];
+        }
+    }
+    return retorno;
+    
 }
 
 -(NSArray*)convertToDomain:(UNIJsonNode*)response{

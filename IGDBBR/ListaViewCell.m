@@ -37,20 +37,8 @@
 }
 
 - (void)setGenero {
-    if (_game.genres.count > 0){
-        Genres *genre = [[Genres alloc]init];
-        NSString* genreId = (NSString*)_game.genres[0];
-        [genre getGenreById:genreId callback:^(Genres *genre) {
-            @try {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    genero.text = genre.name;
-                    
-                });
-            } @catch (NSException * e) {
-                NSLog(@"Exception: %@", e);
-            }
-        }];
-    }
+    genero.text = _game.genreString;
+    
 }
 
 -(void)setInfo:(Game *)game{
@@ -77,8 +65,8 @@
     genero.text = nil;
     
     [self setImageCover];
-    //[self setPlatforms];
-    //[self setGenero];
+    [self setPlatforms];
+    [self setGenero];
     
 }
 -(void)setPlatforms{

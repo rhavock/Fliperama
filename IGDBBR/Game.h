@@ -39,6 +39,7 @@ typedef enum TamanhoImagem{
 @property (nonatomic, strong) NSNumber *hypes;
 @property (nonatomic, strong) NSNumber* rating;
 @property (nonatomic, strong) NSNumber *popularity;
+@property (nonatomic, strong) NSString* genreString;
 @property (nonatomic, strong) NSArray<Developers*>* developers;
 @property (nonatomic, strong) NSArray<Publishers*>* publishers;
 @property (nonatomic, strong) NSString* category;
@@ -46,7 +47,7 @@ typedef enum TamanhoImagem{
 @property (nonatomic, strong) NSArray<GameModes*>* gameModes;
 @property (nonatomic, strong) NSArray<Keywords*>* keywords;
 @property (nonatomic, strong) NSArray<Themes*>* themes;
-@property (nonatomic, strong) NSArray<Genres*>* genres;
+@property (nonatomic, strong) NSArray<NSNumber*>* genres;
 @property (nonatomic, strong) NSDate* first_release_date;
 @property (nonatomic, strong) NSArray<ReleaseDates*>* releasedates;
 @property (nonatomic, strong) NSArray<AlternativeNames*>* alternativeNames;
@@ -64,4 +65,6 @@ typedef enum TamanhoImagem{
 -(void)loadGamesBySort:(NSString*)sort callback:(void(^)(NSArray<Game*>* games))callback;
 -(void)loadGamesByGenreSortLimit:(NSString*)filter limit:(NSString*)limit sort:(NSString*)sort callback:(void(^)(NSArray<Game*>* games))callback;
 - (void)imageUrl:(NSString *)stringimagem tamanhoImagem:(TamanhoImagem)tamanhoImagem retornoImagem:(void(^)(UIImage* image))retornoImagem;
+-(NSString*)setGenre:(Game*)game;
+-(PlatformGame*)setPlatform:(Game*)game;
 @end
