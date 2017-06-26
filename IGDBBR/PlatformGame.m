@@ -38,7 +38,7 @@
 
 -(NSString*)getPlatformByGameIdBase:(NSNumber*)gameID{
     
-    NSDictionary *headers = @{@"X-Mashape-Key": @"4rOn6YnZSUmshbDr9NmN7tmEyQMap1djcEZjsnyI4cg6fo4nMv"};
+    NSDictionary *headers = @{@"X-Mashape-Key": @"nSyH5q67jKmshWQuk9mKRqx25V7Pp1xzhtOjsnDOR16ItWX4zM"};
     UNIHTTPJsonResponse *response = [[UNIRest get:^(UNISimpleRequest *request) {
         [request setUrl:[NSString stringWithFormat:@"https://igdbcom-internet-game-database-v1.p.mashape.com/platforms/?fields=*&limit=50&offset=1&filter[games][eq]=%@",gameID]];
         [request setHeaders:headers];

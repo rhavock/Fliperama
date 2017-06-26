@@ -16,6 +16,8 @@
 @property (nonatomic, strong) IBOutlet UILabel *releaseDate;
 @property (nonatomic, strong) IBOutlet UILabel *genero;
 @property (nonatomic, strong) IBOutlet UILabel *nota;
+@property (nonatomic, strong) IBOutlet UILabel *notaAgregada;
+@property (nonatomic, strong) IBOutlet UILabel *notaTotal;
 @property (nonatomic, strong) IBOutlet UIImageView *image;
 @property (nonatomic, strong) Game* game;
 @property (nonatomic, strong) IBOutlet UILabel* counter;

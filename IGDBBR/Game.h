@@ -40,6 +40,11 @@ typedef enum TamanhoImagem{
 @property (nonatomic, strong) NSNumber* rating;
 @property (nonatomic, strong) NSNumber *popularity;
 @property (nonatomic, strong) NSString* genreString;
+@property (nonatomic, strong) NSString* aggregated_rating;
+@property (nonatomic, strong) NSString* total_rating_count;
+@property (nonatomic, strong) NSString* total_rating;
+@property (nonatomic, strong) NSString* rating_count;
+
 @property (nonatomic, strong) NSArray<Developers*>* developers;
 @property (nonatomic, strong) NSArray<Publishers*>* publishers;
 @property (nonatomic, strong) NSString* category;

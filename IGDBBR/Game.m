@@ -15,7 +15,7 @@
 
 -(void)loadGamesById:(NSNumber*)id callback:(void(^)(Game* game))callback{
     
-    NSDictionary *headers = @{@"X-Mashape-Key": @"4rOn6YnZSUmshbDr9NmN7tmEyQMap1djcEZjsnyI4cg6fo4nMv", @"Accept": @"application/json"};
+    NSDictionary *headers = @{@"X-Mashape-Key": @"nSyH5q67jKmshWQuk9mKRqx25V7Pp1xzhtOjsnDOR16ItWX4zM", @"Accept": @"application/json"};
     [[UNIRest get:^(UNISimpleRequest *request) {
         [request setUrl:[NSString stringWithFormat:@"https://igdbcom-internet-game-database-v1.p.mashape.com/games/%@?fields=*&limit=50&offset=0&order=release_dates.date%3Adesc",id]];
         [request setHeaders:headers];
@@ -28,7 +28,7 @@
 }
 -(void)loadGamesByName:(NSString*)search callback:(void(^)(NSArray<Game*>* games))callback{
     
-    NSDictionary *headers = @{@"X-Mashape-Key": @"4rOn6YnZSUmshbDr9NmN7tmEyQMap1djcEZjsnyI4cg6fo4nMv", @"Accept": @"application/json"};
+    NSDictionary *headers = @{@"X-Mashape-Key": @"nSyH5q67jKmshWQuk9mKRqx25V7Pp1xzhtOjsnDOR16ItWX4zM", @"Accept": @"application/json"};
     [[UNIRest get:^(UNISimpleRequest *request) {
         NSString *url = [NSString stringWithFormat:@"https://igdbcom-internet-game-database-v1.p.mashape.com/games/?fields=*&limit=50&offset=0&search='%@'",search];
         [request setUrl:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
@@ -42,7 +42,7 @@
 }
 -(void)loadGamesBySort:(NSString*)sort callback:(void(^)(NSArray<Game*>* games))callback{
     
-    NSDictionary *headers = @{@"X-Mashape-Key": @"4rOn6YnZSUmshbDr9NmN7tmEyQMap1djcEZjsnyI4cg6fo4nMv", @"Accept": @"application/json"};
+    NSDictionary *headers = @{@"X-Mashape-Key": @"nSyH5q67jKmshWQuk9mKRqx25V7Pp1xzhtOjsnDOR16ItWX4zM", @"Accept": @"application/json"};
     [[UNIRest get:^(UNISimpleRequest *request) {
         NSString *url = [NSString stringWithFormat:@"https://igdbcom-internet-game-database-v1.p.mashape.com/games/?fields=*&limit=50&offset=0&order=%@:desc",sort];
         NSLog(@"%@", url);
@@ -63,7 +63,7 @@
     
 }
 -(NSMutableArray*)loadGamesBySort:(NSString*)sort games:(NSMutableArray*)games offset:(int)offset{
-    NSDictionary *headers = @{@"X-Mashape-Key": @"4rOn6YnZSUmshbDr9NmN7tmEyQMap1djcEZjsnyI4cg6fo4nMv", @"Accept": @"application/json"};
+    NSDictionary *headers = @{@"X-Mashape-Key": @"nSyH5q67jKmshWQuk9mKRqx25V7Pp1xzhtOjsnDOR16ItWX4zM", @"Accept": @"application/json"};
     UNIHTTPJsonResponse *response = [[UNIRest get:^(UNISimpleRequest *request) {
         NSString *url = [NSString stringWithFormat:@"https://igdbcom-internet-game-database-v1.p.mashape.com/games/?fields=*&limit=50&offset=%d&order=%@:desc",offset,sort];
         NSLog(@"%@", url);
@@ -82,7 +82,7 @@
 }
 
 -(void)loadGamesByGenreSortLimit:(NSString *)filter limit:(NSString *)limit sort:(NSString *)sort callback:(void (^)(NSArray<Game *> *))callback{
-    NSDictionary *headers = @{@"X-Mashape-Key": @"4rOn6YnZSUmshbDr9NmN7tmEyQMap1djcEZjsnyI4cg6fo4nMv", @"Accept": @"application/json"};
+    NSDictionary *headers = @{@"X-Mashape-Key": @"nSyH5q67jKmshWQuk9mKRqx25V7Pp1xzhtOjsnDOR16ItWX4zM", @"Accept": @"application/json"};
     [[UNIRest get:^(UNISimpleRequest *request) {
         NSString *url = [NSString stringWithFormat:@"https://igdbcom-internet-game-database-v1.p.mashape.com/games/?fields=*&limit=%@&order=%@:desc&filter[genres][eq]=%@",limit,sort,filter];
         NSLog(@"%@", url);
@@ -134,6 +134,11 @@
         game.created_at= response.array[i][@"created_at"];;
         game.updated_at= response.array[i][@"updated_at"];;
         game.rating = response.array[i][@"rating"];
+        game.aggregated_rating = response.array[i][@"aggregated_rating"];
+        game.total_rating_count = response.array[i][@"total_rating_count"];
+        game.total_rating = response.array[i][@"total_rating"];
+        game.rating_count = response.array[i][@"rating_count"];
+        
         
         game.collection= response.array[i][@"collection"];;
         game.hypes= response.array[i][@"hypes"];

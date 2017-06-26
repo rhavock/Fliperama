@@ -11,5 +11,8 @@ target 'IGDBBR' do
   pod 'KYGooeyMenu'
   pod 'Firebase/Core'
   pod 'Firebase/AdMob'
+  pod "XCDYouTubeKit", "~> 2.5"
+  pod 'GoogleAPIClient/YouTube', '~> 1.0'
   pod 'HCYoutubeParser'
+  
 end

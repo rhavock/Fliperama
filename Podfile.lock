@@ -14,19 +14,32 @@ PODS:
   - FirebaseInstanceID (2.0.0):
     - FirebaseCore (~> 4.0)
   - Google-Mobile-Ads-SDK (7.20.0)
+  - GoogleAPIClient/Core (1.0.5):
+    - GTMSessionFetcher (~> 1.1)
+  - GoogleAPIClient/YouTube (1.0.5):
+    - GoogleAPIClient/Core
+    - GTMSessionFetcher (~> 1.1)
   - GoogleToolboxForMac/Defines (2.1.1)
   - GoogleToolboxForMac/NSData+zlib (2.1.1):
     - GoogleToolboxForMac/Defines (= 2.1.1)
+  - GTMSessionFetcher (1.1.10):
+    - GTMSessionFetcher/Full (= 1.1.10)
+  - GTMSessionFetcher/Core (1.1.10)
+  - GTMSessionFetcher/Full (1.1.10):
+    - GTMSessionFetcher/Core (= 1.1.10)
   - HCYoutubeParser (0.0.5)
   - KYGooeyMenu (1.0.5)
   - Unirest (1.1.4)
+  - XCDYouTubeKit (2.5.5)
 
 DEPENDENCIES:
   - Firebase/AdMob
   - Firebase/Core
+  - GoogleAPIClient/YouTube (~> 1.0)
   - HCYoutubeParser
   - KYGooeyMenu
   - Unirest
+  - XCDYouTubeKit (~> 2.5)
 
 SPEC CHECKSUMS:
   Firebase: c7ad0731eab26d18a3fc547dd048b0f7cd9c63ae
@@ -34,11 +47,14 @@ SPEC CHECKSUMS:
   FirebaseCore: 1a8bf6c795ad07d2918278657954ffd2552e9c17
   FirebaseInstanceID: 9fbf536668f4d3f0880e7438456dabd1376e294b
   Google-Mobile-Ads-SDK: 168312cdc167fa22746d4ea8e839fc4825dd2966
+  GoogleAPIClient: 77df755d41d70ee5a99b7b752614fbb439f19438
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
+  GTMSessionFetcher: 30d874b96d0d76028f61fbd122801e3f030d47db
   HCYoutubeParser: bc1db8c062e4b835eda381f2be2f9970f6a8d071
   KYGooeyMenu: 3d9f3504b59a5dd1b6c4ff34a06836284647a2aa
   Unirest: 5e4d93eaf32463bf619a4ecd3bbc8c32acf21eac
+  XCDYouTubeKit: 86f4e7a9c2baa7b7adf6abfc28ac3ab34927be2d
 
-PODFILE CHECKSUM: 52dba21aa3b057edee8ccab5a08f205da1c22a08
+PODFILE CHECKSUM: a80395a0605536d4df2e0712cac9db322c19f429
 
 COCOAPODS: 1.2.0

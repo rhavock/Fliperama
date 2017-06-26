@@ -14,6 +14,7 @@
 #import "ImageViewController.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import "HCYoutubeParser.h"
+
 @import AVFoundation;
 @import AVKit;
 
@@ -142,6 +143,23 @@ static NSString *const kBannerAdUnitID = @"ca-app-pub-6564053570683791/132162206
     self.nota.layer.backgroundColor = [UIColor clearColor].CGColor;
     int Nota = [game.rating intValue];
     self.nota.text = [NSString stringWithFormat:@"%d", Nota];
+    
+    self.notaTotal.layer.cornerRadius = 20;
+    self.notaTotal.textAlignment = NSTextAlignmentCenter;
+    self.notaTotal.layer.borderWidth = 2;
+    self.notaTotal.layer.borderColor = [UIColor greenColor].CGColor;
+    self.notaTotal.layer.backgroundColor = [UIColor clearColor].CGColor;
+    Nota = [game.total_rating intValue];
+    self.notaTotal.text = [NSString stringWithFormat:@"%d", Nota];
+    
+    self.notaAgregada.layer.cornerRadius = 20;
+    self.notaAgregada.textAlignment = NSTextAlignmentCenter;
+    self.notaAgregada.layer.borderWidth = 2;
+    self.notaAgregada.layer.borderColor = [UIColor greenColor].CGColor;
+    self.notaAgregada.layer.backgroundColor = [UIColor clearColor].CGColor;
+    Nota = [game.aggregated_rating intValue];
+    self.notaAgregada.text = [NSString stringWithFormat:@"%d", Nota];
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -234,31 +252,35 @@ static NSString *const kBannerAdUnitID = @"ca-app-pub-6564053570683791/132162206
 
 -(void)loadVideos{
     
-    NSURL * url = [[NSURL alloc]initWithString:[NSString stringWithFormat:@"%@%@",@"https://www.youtube.com/watch?v=",game.videos[0].video_id]];
-    
-    AVPlayer *player = [AVPlayer playerWithURL:url];
-
-    //NSDictionary *videos = [HCYoutubeParser h264videosWithYoutubeURL:url];
-    
-    
-    AVPlayerViewController *controller = [[AVPlayerViewController alloc] init];
-    [controller setPlayer:player];
-    [self presentViewController:controller animated:YES completion:nil];
-//    controller.player = player;
-//    [player play];
-    // To get a thumbnail for an image there is now a async method for that
-    [HCYoutubeParser thumbnailForYoutubeURL:url
-                              thumbnailSize:YouTubeThumbnailDefaultHighQuality
-                              completeBlock:^(UIImage *image, NSError *error) {
-                                  if (!error) {
-                                      self.thumbVideo.image = image;
-                                  }
-                                  else {
-                                      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
-                                      [alert show];
-                                  }
-                              }];
-    
+    for (int i = 0; i < game.videos.count; i++) {
+        
+        
+        
+        NSURL * url = [[NSURL alloc]initWithString:[NSString stringWithFormat:@"%@%@",@"https://www.youtube.com/watch?v=",game.videos[i].video_id]];
+        
+        AVPlayer *player = [AVPlayer playerWithURL:url];
+        
+        //NSDictionary *videos = [HCYoutubeParser h264videosWithYoutubeURL:url];
+        
+        
+        AVPlayerViewController *controller = [[AVPlayerViewController alloc] init];
+        [controller setPlayer:player];
+        [self presentViewController:controller animated:YES completion:nil];
+        //    controller.player = player;
+        //    [player play];
+        // To get a thumbnail for an image there is now a async method for that
+        [HCYoutubeParser thumbnailForYoutubeURL:url
+                                  thumbnailSize:YouTubeThumbnailDefaultHighQuality
+                                  completeBlock:^(UIImage *image, NSError *error) {
+                                      if (!error) {
+                                          [_datasource addObject:image];
+                                      }
+                                      else {
+                                          UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+                                          [alert show];
+                                      }
+                                  }];
+    }
     
 }
 - (void)didReceiveMemoryWarning {
