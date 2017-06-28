@@ -198,12 +198,12 @@ static NSString *const kBannerAdUnitID = @"ca-app-pub-6564053570683791/132162206
     unsigned char rgba[4];
     CGContextRef context = CGBitmapContextCreate(rgba, 1, 1, 8, 4, colorSpace, kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
     
-    CGContextDrawImage(context, CGRectMake(0, 0, 1, 1), _image.image.CGImage);
+    CGContextDrawImage(context, CGRectMake(0, 0, 1, 1), game.imageBack.CGImage);
     CGColorSpaceRelease(colorSpace);
     CGContextRelease(context);
     
     if(rgba[3] > 0) {
-        CGFloat alpha = ((CGFloat)rgba[3])/255.0;
+        CGFloat alpha = ((CGFloat)rgba[3]/255.0);
         CGFloat multiplier = alpha/255.0;
         self.viewRating.backgroundColor = [UIColor colorWithRed:((CGFloat)rgba[0])*multiplier
                                                           green:((CGFloat)rgba[1])*multiplier
@@ -216,6 +216,14 @@ static NSString *const kBannerAdUnitID = @"ca-app-pub-6564053570683791/132162206
                                                            blue:((CGFloat)rgba[2])/255.0
                                                           alpha:((CGFloat)rgba[3])/255.0];
     }
+    
+    UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+    UIVisualEffectView *blurEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+    blurEffectView.frame = self.viewRating.bounds;
+    blurEffectView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    //self.viewRating.backgroundColor = [UIColor clearColor];
+    //[self.viewRating addSubview:blurEffectView];
+
 }
 
 -(void)loadGenre{

@@ -20,8 +20,48 @@
     [self.txtSearch setReturnKeyType:UIReturnKeyDone];
     self.txtSearch.delegate = self;
     
+    [self loadTop5Games];
+    
 }
 
+
+-(void)loadTop5Games{
+    [self.loading startAnimating];
+    [[Game new]loadGamesBySort:@"popularity" callback:^(NSArray<Game *> *games) {
+        for (int i =0; i < 6; i++) {
+            switch (i) {
+                case 0:
+                    _topoImage.image = games[0].imageBack;
+                    _labelTopo.text = games[0].name;
+                    break;
+                case 1:
+                    _image1.image = games[1].imageBack;
+                    _labelImage1.text = games[1].name;
+                    break;
+                case 2:
+                    _image2.image = games[2].imageBack;
+                    _labelImage2.text = games[2].name;
+                    break;
+                case 3:
+                    _image3.image = games[3].imageBack;
+                    _labelImage3.text = games[3].name;
+                    break;
+                case 4:
+                    _image4.image = games[4].imageBack;
+                    _labelImage4.text = games[4].name;
+                default:
+                    [self.loading stopAnimating];
+                    return;
+                    break;
+            }
+            
+            
+        }
+        
+    }];
+    
+    
+}
 -(IBAction)search:(id)sender{
     [self.loading startAnimating];
     EngineSearch *search = [EngineSearch new];

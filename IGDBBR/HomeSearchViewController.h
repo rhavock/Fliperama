@@ -15,4 +15,19 @@
 @property (nonatomic, strong) IBOutlet UITextField *txtSearch;
 @property (nonatomic, strong) IBOutlet UIActivityIndicatorView * loading;
 
+@property (nonatomic, strong)IBOutlet UIImageView *topoImage;
+@property (nonatomic, strong)IBOutlet UIImageView *image1;
+@property (nonatomic, strong)IBOutlet UIImageView *image2;
+@property (nonatomic, strong)IBOutlet UIImageView *image3;
+@property (nonatomic, strong)IBOutlet UIImageView *image4;
+
+@property (nonatomic, strong)IBOutlet UILabel *labelTopo;
+@property (nonatomic, strong)IBOutlet UILabel *labelImage1;
+@property (nonatomic, strong)IBOutlet UILabel *labelImage2;
+@property (nonatomic, strong)IBOutlet UILabel *labelImage3;
+@property (nonatomic, strong)IBOutlet UILabel *labelImage4;
+
+
+
+
 @end

@@ -52,11 +52,11 @@
         UNIJsonNode *body = response.body;
         NSMutableArray *retorno = [self convertToDomain:body];
         int offset = 0;
-        while([retorno count] < 50){
-            offset = offset + 50;
-            retorno = [self loadGamesBySort:sort games:retorno offset:offset];
-            
-        }
+//        while([retorno count] < 50){
+//            offset = offset + 50;
+//            retorno = [self loadGamesBySort:sort games:retorno offset:offset];
+//            
+//        }
         callback(retorno);
         
     }];
