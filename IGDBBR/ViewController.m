@@ -37,10 +37,12 @@ static NSString *const kBannerAdUnitID = @"ca-app-pub-6564053570683791/132162206
     [super viewDidLoad];
     [self.loading startAnimating];
     self.navigationController.navigationBar.hidden = NO;
+
+    
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapDetected)];
     singleTap.numberOfTapsRequired = 1;
-    [_image setUserInteractionEnabled:YES];
-    [_image addGestureRecognizer:singleTap];
+    [_imgsly setUserInteractionEnabled:YES];
+    [_imgsly addGestureRecognizer:singleTap];
     
     self.bannerView.adUnitID = kBannerAdUnitID;
     self.bannerView.rootViewController = self;
@@ -61,31 +63,12 @@ static NSString *const kBannerAdUnitID = @"ca-app-pub-6564053570683791/132162206
         [self.loadingdetalhes stopAnimating];
     });
     
-    if(game.cover.url != nil){
-        [self.loadingdetalhes startAnimating];
-        [game imageUrl:game.cover.url tamanhoImagem:cover_big retornoImagem:^(UIImage *image) {
-            @try {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    _image.image = image;
-                    [self averageColor];
-                    [self.loadingdetalhes stopAnimating];
-                    
-                });
-            } @catch (NSException * e) {
-                NSLog(@"Exception: %@", e);
-            }
-            
-        }];
-    }
-    else{
-        _image.image = [UIImage imageNamed:@"naotem"];
-    }
     [self loadCarousel];
     [self loadPlatform];
     [self loadReleaseDate];
     [self loadRating];
     [self loadGenre];
-    [self loadVideos];
+    //self loadVideos];
     [self.loadingdetalhes stopAnimating];
     [self.loading stopAnimating];
 }
@@ -205,16 +188,23 @@ static NSString *const kBannerAdUnitID = @"ca-app-pub-6564053570683791/132162206
     if(rgba[3] > 0) {
         CGFloat alpha = ((CGFloat)rgba[3]/255.0);
         CGFloat multiplier = alpha/255.0;
-        self.viewRating.backgroundColor = [UIColor colorWithRed:((CGFloat)rgba[0])*multiplier
-                                                          green:((CGFloat)rgba[1])*multiplier
-                                                           blue:((CGFloat)rgba[2])*multiplier
-                                                          alpha:alpha];
+        UIColor *cor = [UIColor colorWithRed:((CGFloat)rgba[0])*multiplier
+                                       green:((CGFloat)rgba[1])*multiplier
+                                        blue:((CGFloat)rgba[2])*multiplier
+                                       alpha:alpha];
+        self.viewRating.backgroundColor = cor;
+        
+        self.navigationController.navigationBar.backgroundColor = cor;
+        self.navigationController.navigationBar.tintColor = cor;
     }
     else {
-        self.viewRating.backgroundColor = [UIColor colorWithRed:((CGFloat)rgba[0])/255.0
-                                                          green:((CGFloat)rgba[1])/255.0
-                                                           blue:((CGFloat)rgba[2])/255.0
-                                                          alpha:((CGFloat)rgba[3])/255.0];
+        UIColor *cor =[UIColor colorWithRed:((CGFloat)rgba[0])/255.0
+                                      green:((CGFloat)rgba[1])/255.0
+                                       blue:((CGFloat)rgba[2])/255.0
+                                      alpha:((CGFloat)rgba[3])/255.0];
+        self.viewRating.backgroundColor = cor;
+        self.navigationController.navigationBar.backgroundColor = cor;
+        self.navigationController.navigationBar.tintColor = cor;
     }
     
     UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
@@ -239,6 +229,31 @@ static NSString *const kBannerAdUnitID = @"ca-app-pub-6564053570683791/132162206
     
     NSMutableArray<UIImage*> *source = [[NSMutableArray<UIImage*> alloc]init];
     _datasource = source;
+    if(game.cover.url != nil){
+        [self.loadingdetalhes startAnimating];
+        
+        NSString *urlImage = game.cover.url ;
+        urlImage = [urlImage stringByReplacingOccurrencesOfString:@".png"
+                                                       withString:@".jpg"];
+        [game imageUrl:urlImage tamanhoImagem:screenshot_big retornoImagem:^(UIImage *image) {
+            @try {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [_datasource addObject:image];
+                    self.totalCount++;
+                    [self averageColor];
+                    [self.loadingdetalhes stopAnimating];
+                    
+                });
+            } @catch (NSException * e) {
+                NSLog(@"Exception: %@", e);
+            }
+            
+        }];
+    }
+    else{
+        _image.image = [UIImage imageNamed:@"naotem"];
+    }
+
     if([game.screenshots count] == 0){
         self.imgsly.image = [UIImage imageNamed:@"naotem"];
         return;
