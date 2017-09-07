@@ -1,24 +1,30 @@
 PODS:
-  - Firebase/AdMob (4.0.2):
+  - Firebase/AdMob (4.1.1):
     - Firebase/Core
-    - Google-Mobile-Ads-SDK (= 7.20.0)
-  - Firebase/Core (4.0.2):
-    - FirebaseAnalytics (= 4.0.1)
-    - FirebaseCore (= 4.0.2)
-  - FirebaseAnalytics (4.0.1):
+    - Google-Mobile-Ads-SDK (= 7.23.0)
+  - Firebase/Core (4.1.1):
+    - FirebaseAnalytics (= 4.0.3)
+    - FirebaseCore (= 4.0.6)
+  - FirebaseAnalytics (4.0.3):
     - FirebaseCore (~> 4.0)
     - FirebaseInstanceID (~> 2.0)
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
-  - FirebaseCore (4.0.2):
+    - nanopb (~> 0.3)
+  - FirebaseCore (4.0.6):
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
-  - FirebaseInstanceID (2.0.0):
+    - nanopb (~> 0.3)
+  - FirebaseInstanceID (2.0.2):
     - FirebaseCore (~> 4.0)
+<<<<<<< Updated upstream
   - Google-Mobile-Ads-SDK (7.20.0)
   - GoogleAPIClient/Core (1.0.5):
     - GTMSessionFetcher (~> 1.1)
   - GoogleAPIClient/YouTube (1.0.5):
     - GoogleAPIClient/Core
     - GTMSessionFetcher (~> 1.1)
+=======
+  - Google-Mobile-Ads-SDK (7.23.0)
+>>>>>>> Stashed changes
   - GoogleToolboxForMac/Defines (2.1.1)
   - GoogleToolboxForMac/NSData+zlib (2.1.1):
     - GoogleToolboxForMac/Defines (= 2.1.1)
@@ -29,6 +35,14 @@ PODS:
     - GTMSessionFetcher/Core (= 1.1.10)
   - HCYoutubeParser (0.0.5)
   - KYGooeyMenu (1.0.5)
+  - nanopb (0.3.8):
+    - nanopb/decode (= 0.3.8)
+    - nanopb/encode (= 0.3.8)
+  - nanopb/decode (0.3.8)
+  - nanopb/encode (0.3.8)
+  - SDWebImage (4.0.0):
+    - SDWebImage/Core (= 4.0.0)
+  - SDWebImage/Core (4.0.0)
   - Unirest (1.1.4)
   - XCDYouTubeKit (2.5.5)
 
@@ -38,23 +52,38 @@ DEPENDENCIES:
   - GoogleAPIClient/YouTube (~> 1.0)
   - HCYoutubeParser
   - KYGooeyMenu
+  - SDWebImage (~> 4.0.0)
   - Unirest
   - XCDYouTubeKit (~> 2.5)
 
 SPEC CHECKSUMS:
+<<<<<<< Updated upstream
   Firebase: c7ad0731eab26d18a3fc547dd048b0f7cd9c63ae
   FirebaseAnalytics: 4d7040fefc3cd8b291cde35f12cf063d7963f15d
   FirebaseCore: 1a8bf6c795ad07d2918278657954ffd2552e9c17
   FirebaseInstanceID: 9fbf536668f4d3f0880e7438456dabd1376e294b
   Google-Mobile-Ads-SDK: 168312cdc167fa22746d4ea8e839fc4825dd2966
   GoogleAPIClient: 77df755d41d70ee5a99b7b752614fbb439f19438
+=======
+  Firebase: 052c0de688fc87b414996eea13e223dd9fee3fa2
+  FirebaseAnalytics: 76f754d37ca5b04f36856729b6af3ca0152d1069
+  FirebaseCore: 28def3c643989c97ea5a69ea5000f5fa9902b9fd
+  FirebaseInstanceID: c4c7fca62c7b7330caee5da04f19a37ea37bb1c1
+  Google-Mobile-Ads-SDK: a43dc8efdb566c74d00ac6934c781de969348d80
+>>>>>>> Stashed changes
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMSessionFetcher: 30d874b96d0d76028f61fbd122801e3f030d47db
   HCYoutubeParser: bc1db8c062e4b835eda381f2be2f9970f6a8d071
   KYGooeyMenu: 3d9f3504b59a5dd1b6c4ff34a06836284647a2aa
+  nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
+  SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   Unirest: 5e4d93eaf32463bf619a4ecd3bbc8c32acf21eac
   XCDYouTubeKit: 86f4e7a9c2baa7b7adf6abfc28ac3ab34927be2d
 
+<<<<<<< Updated upstream
 PODFILE CHECKSUM: a80395a0605536d4df2e0712cac9db322c19f429
+=======
+PODFILE CHECKSUM: bf37c09766e8b29f2fb5880c64f04d55597b07a9
+>>>>>>> Stashed changes
 
-COCOAPODS: 1.2.0
+COCOAPODS: 1.1.1

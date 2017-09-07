@@ -7,16 +7,20 @@
 //
 
 #import "ViewController.h"
-#import <UNIRest.h>
+#import "UNIRest.h"
 #import "Game.h"
 #import "KASlideShow.h"
 #import "PlatformGame.h"
 #import "ImageViewController.h"
+<<<<<<< Updated upstream
 #import <MediaPlayer/MediaPlayer.h>
 #import "HCYoutubeParser.h"
 
 @import AVFoundation;
 @import AVKit;
+=======
+#import <SDWebImage/UIImageView+WebCache.h>
+>>>>>>> Stashed changes
 
 @import GoogleMobileAds;
 
@@ -63,6 +67,27 @@ static NSString *const kBannerAdUnitID = @"ca-app-pub-6564053570683791/132162206
         [self.loadingdetalhes stopAnimating];
     });
     
+<<<<<<< Updated upstream
+=======
+    if(game.cover.url != nil){
+        
+        NSString* resultado = [self.game.cover.url stringByReplacingOccurrencesOfString:@"t_thumb"
+                                                                             withString:@"t_cover_big"];
+        resultado = [resultado stringByReplacingOccurrencesOfString:@".png"
+                                                         withString:@".jpg"];
+        
+        
+        [self.image sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https:%@",resultado]] placeholderImage:[UIImage imageNamed:@"naotem"] options:SDWebImageRefreshCached];
+        
+        
+        [self averageColor];
+        [self.loadingdetalhes stopAnimating];
+        
+    }
+    else{
+        _image.image = [UIImage imageNamed:@"naotem"];
+    }
+>>>>>>> Stashed changes
     [self loadCarousel];
     [self loadPlatform];
     [self loadReleaseDate];
@@ -254,23 +279,43 @@ static NSString *const kBannerAdUnitID = @"ca-app-pub-6564053570683791/132162206
         _image.image = [UIImage imageNamed:@"naotem"];
     }
 
+<<<<<<< Updated upstream
     if([game.screenshots count] == 0){
         self.imgsly.image = [UIImage imageNamed:@"naotem"];
         return;
     }
+=======
+-(void)loadCarousel{
+    
+//    [self.loadingimages startAnimating];
+//    
+//    NSMutableArray<UIImage*> *source = [[NSMutableArray<UIImage*> alloc]init];
+//    _datasource = source;
+//    if([game.screenshots count] == 0){
+//        self.imgsly.image = [UIImage imageNamed:@"naotem"];
+//        return;
+//    }
+    
+    NSMutableArray *urls = [NSMutableArray new];
+>>>>>>> Stashed changes
     
     
     for(Screenshots *screen in game.screenshots){
-        [game imageUrl:screen.url tamanhoImagem:screenshot_huge retornoImagem:^(UIImage *image) {
-            self.imgsly.image = image;
-            self.imgslyback.image = image;
+        //[game imageUrl:screen.url tamanhoImagem:screenshot_huge retornoImagem:^(UIImage *image) {
+        NSString* resultado = [screen.url stringByReplacingOccurrencesOfString:@"t_thumb"
+                                                                             withString:@"t_screenshot_big"];
+        [urls addObject:[NSURL URLWithString:[NSString stringWithFormat:@"https:%@",resultado]]];
+          //  self.imgslyback.image = image;
             self.index=0;
             
-            [_datasource addObject:image];
-            _page.numberOfPages =++self.totalCount;
-            [self.loadingimages stopAnimating];
-        }];
+           // [_datasource addObject:image];
+            //_page.numberOfPages =++self.totalCount;
+//            [self.loadingimages stopAnimating];
+        //}];
     }
+    
+    [self.imgsly sd_setAnimationImagesWithURLs:urls];
+    self.imgsly.animationDuration = 35;
 }
 
 -(void)loadVideos{

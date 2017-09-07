@@ -15,9 +15,13 @@
 
 -(void)loadGamesById:(NSNumber*)id callback:(void(^)(Game* game))callback{
     
+<<<<<<< Updated upstream
     NSDictionary *headers = @{@"X-Mashape-Key": @"nSyH5q67jKmshWQuk9mKRqx25V7Pp1xzhtOjsnDOR16ItWX4zM", @"Accept": @"application/json"};
+=======
+    NSDictionary *headers = @{@"user_key": @"3a178c40eb37da61b9e024908fb72b64", @"Accept": @"application/json"};
+>>>>>>> Stashed changes
     [[UNIRest get:^(UNISimpleRequest *request) {
-        [request setUrl:[NSString stringWithFormat:@"https://igdbcom-internet-game-database-v1.p.mashape.com/games/%@?fields=*&limit=50&offset=0&order=release_dates.date%3Adesc",id]];
+        [request setUrl:[NSString stringWithFormat:@"https://api-2445582011268.apicast.io/games/%@?fields=*&limit=50&offset=0&order=release_dates.date%3Adesc",id]];
         [request setHeaders:headers];
     }]asJsonAsync:^(UNIHTTPJsonResponse *response, NSError *error) {
         UNIJsonNode *body = response.body;
@@ -28,10 +32,14 @@
 }
 -(void)loadGamesByName:(NSString*)search callback:(void(^)(NSArray<Game*>* games))callback{
     
+<<<<<<< Updated upstream
     NSDictionary *headers = @{@"X-Mashape-Key": @"nSyH5q67jKmshWQuk9mKRqx25V7Pp1xzhtOjsnDOR16ItWX4zM", @"Accept": @"application/json"};
+=======
+    NSDictionary *headers = @{@"user-key": @"3a178c40eb37da61b9e024908fb72b64", @"Accept": @"application/json"};
+>>>>>>> Stashed changes
     [[UNIRest get:^(UNISimpleRequest *request) {
-        NSString *url = [NSString stringWithFormat:@"https://igdbcom-internet-game-database-v1.p.mashape.com/games/?fields=*&limit=50&offset=0&search='%@'",search];
-        [request setUrl:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        NSString *url = [NSString stringWithFormat:@"https://api-2445582011268.apicast.io/games/?fields=*&limit=50&offset=0&search=%@",search];
+        [request setUrl:url];
         [request setHeaders:headers];
     }]asJsonAsync:^(UNIHTTPJsonResponse *response, NSError *error) {
         UNIJsonNode *body = response.body;
@@ -42,9 +50,13 @@
 }
 -(void)loadGamesBySort:(NSString*)sort callback:(void(^)(NSArray<Game*>* games))callback{
     
+<<<<<<< Updated upstream
     NSDictionary *headers = @{@"X-Mashape-Key": @"nSyH5q67jKmshWQuk9mKRqx25V7Pp1xzhtOjsnDOR16ItWX4zM", @"Accept": @"application/json"};
+=======
+     NSDictionary *headers = @{@"user_key": @"3a178c40eb37da61b9e024908fb72b64", @"Accept": @"application/json"};
+>>>>>>> Stashed changes
     [[UNIRest get:^(UNISimpleRequest *request) {
-        NSString *url = [NSString stringWithFormat:@"https://igdbcom-internet-game-database-v1.p.mashape.com/games/?fields=*&limit=50&offset=0&order=%@:desc",sort];
+        NSString *url = [NSString stringWithFormat:@"https://api-2445582011268.apicast.io/games/?fields=*&limit=50&offset=0&order=%@:desc",sort];
         NSLog(@"%@", url);
         [request setUrl:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
         [request setHeaders:headers];
@@ -63,9 +75,13 @@
     
 }
 -(NSMutableArray*)loadGamesBySort:(NSString*)sort games:(NSMutableArray*)games offset:(int)offset{
+<<<<<<< Updated upstream
     NSDictionary *headers = @{@"X-Mashape-Key": @"nSyH5q67jKmshWQuk9mKRqx25V7Pp1xzhtOjsnDOR16ItWX4zM", @"Accept": @"application/json"};
+=======
+  NSDictionary *headers = @{@"user_key": @"3a178c40eb37da61b9e024908fb72b64", @"Accept": @"application/json"};
+>>>>>>> Stashed changes
     UNIHTTPJsonResponse *response = [[UNIRest get:^(UNISimpleRequest *request) {
-        NSString *url = [NSString stringWithFormat:@"https://igdbcom-internet-game-database-v1.p.mashape.com/games/?fields=*&limit=50&offset=%d&order=%@:desc",offset,sort];
+        NSString *url = [NSString stringWithFormat:@"https://api-2445582011268.apicast.io/games/?fields=*&limit=50&offset=%d&order=%@:desc",offset,sort];
         NSLog(@"%@", url);
         [request setUrl:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
         [request setHeaders:headers];
@@ -84,7 +100,7 @@
 -(void)loadGamesByGenreSortLimit:(NSString *)filter limit:(NSString *)limit sort:(NSString *)sort callback:(void (^)(NSArray<Game *> *))callback{
     NSDictionary *headers = @{@"X-Mashape-Key": @"nSyH5q67jKmshWQuk9mKRqx25V7Pp1xzhtOjsnDOR16ItWX4zM", @"Accept": @"application/json"};
     [[UNIRest get:^(UNISimpleRequest *request) {
-        NSString *url = [NSString stringWithFormat:@"https://igdbcom-internet-game-database-v1.p.mashape.com/games/?fields=*&limit=%@&order=%@:desc&filter[genres][eq]=%@",limit,sort,filter];
+        NSString *url = [NSString stringWithFormat:@"https://api-2445582011268.apicast.io/games/?fields=*&limit=%@&order=%@:desc&filter[genres][eq]=%@",limit,sort,filter];
         NSLog(@"%@", url);
         [request setUrl:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
         [request setHeaders:headers];
@@ -182,9 +198,30 @@
         game.cover = cover;
         //    _esrb= response.array[0][@"name"];;
         
+<<<<<<< Updated upstream
         //game.platformGame = [self setPlatform:game];
 //        game.genreString = [self setGenre:game];
         game.imageBack = [self setImage:game];
+=======
+//        if([game.screenshots count] != 0){
+//            
+//            
+//            NSString* stringima = [NSString stringWithFormat:@"http:%@", game.screenshots[0].url];
+//            NSString* resultado = [stringima stringByReplacingOccurrencesOfString:@"t_thumb"
+//                                                                       withString:@"t_screenshot_big"];
+//            resultado = [resultado stringByReplacingOccurrencesOfString:@".png"
+//                                                             withString:@".jpg"];
+//            
+//            NSURL *imgURL = [NSURL URLWithString:resultado];
+//            
+//            UIImage *image = [UIImage imageWithData:UIImageJPEGRepresentation([UIImage imageWithData:[NSData dataWithContentsOfURL:imgURL]],0.9)];
+//            if(image != nil){
+//                game.imageBack = image;
+//            }
+//        }else{
+            game.imageBack = [UIImage imageNamed:@"naotem"];
+//        }
+>>>>>>> Stashed changes
         [games addObject:game];
     }
     return games;

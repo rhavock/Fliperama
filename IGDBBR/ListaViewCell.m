@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "ListaViewCell.h"
 #import "PlatformGame.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @implementation ListaViewCell
 @synthesize imagem;
@@ -29,9 +30,18 @@
 
 - (void)setImageCover {
     
-    if(_game.imageBack != nil){
-        self.imgBack.image = _game.imageBack;
-    }
+    //if(_game.imageBack != nil){
+        //self.imgBack.image = [
+    //}
+    
+    NSString* resultado = [self.game.cover.url stringByReplacingOccurrencesOfString:@"t_thumb"
+                                                                                                  withString:@"t_screenshot_big"];
+                                       resultado = [resultado stringByReplacingOccurrencesOfString:@".png"
+                                                                                        withString:@".jpg"];
+    
+    
+    [self.imgBack sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https:%@",resultado]] placeholderImage:[UIImage imageNamed:@"naotem"] options:SDWebImageRefreshCached];
+    
     imagem.layer.shadowColor = [UIColor blackColor].CGColor;
     imagem.layer.shadowOffset = CGSizeMake(1.0, 1.0);
 }

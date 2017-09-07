@@ -52,6 +52,7 @@
 		1DCBE77F1E608EF0001FF97C /* Esrb.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DCBE77E1E608EF0001FF97C /* Esrb.m */; };
 		1DCBE7811E608F01001FF97C /* Pegi.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DCBE7801E608F01001FF97C /* Pegi.m */; };
 		1DD2F3FB1E9FEDB400862971 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD2F3FA1E9FEDB400862971 /* Utils.m */; };
+		3AD23B7A4A0B8B6D2DAEA2B9 /* Pods_IGDBBR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05EEB83AA2F5AD62868E9C36 /* Pods_IGDBBR.framework */; };
 		3B855E3C1E97FBCE003AFA5E /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B855E3B1E97FBCD003AFA5E /* ImageViewController.m */; };
 		3B855E3E1E97FBF0003AFA5E /* ImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B855E3D1E97FBF0003AFA5E /* ImageViewController.xib */; };
 		3BBB4E4F1E8979BE009FCC68 /* DBConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BBB4E4E1E8979BE009FCC68 /* DBConnection.m */; };
@@ -59,10 +60,10 @@
 		D66B82C31EEF175700AC4D3F /* EngineSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = D66B82C21EEF175700AC4D3F /* EngineSearch.m */; };
 		D6A475A71EE9B6630078098E /* HomeSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6A475A61EE9B6630078098E /* HomeSearchViewController.m */; };
 		D6A475A91EE9B6850078098E /* HomeSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6A475A81EE9B6850078098E /* HomeSearchViewController.xib */; };
-		FCC58CC20B09DDFF2BE7F832 /* libPods-IGDBBR.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DF77F93E5D4306E712A92D5B /* libPods-IGDBBR.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		05EEB83AA2F5AD62868E9C36 /* Pods_IGDBBR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IGDBBR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D1930ED1E6362790037B7C9 /* KASlideShow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KASlideShow.h; sourceTree = "<group>"; };
 		1D1930EE1E6362790037B7C9 /* KASlideShow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KASlideShow.m; sourceTree = "<group>"; };
 		1D1930F01E6362B90037B7C9 /* NSData+ImageContentType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+ImageContentType.h"; sourceTree = "<group>"; };
@@ -164,7 +165,6 @@
 		D6A475A51EE9B6630078098E /* HomeSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeSearchViewController.h; sourceTree = "<group>"; };
 		D6A475A61EE9B6630078098E /* HomeSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeSearchViewController.m; sourceTree = "<group>"; };
 		D6A475A81EE9B6850078098E /* HomeSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeSearchViewController.xib; sourceTree = "<group>"; };
-		DF77F93E5D4306E712A92D5B /* libPods-IGDBBR.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-IGDBBR.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFFFFA5130A733B639C34C7E /* Pods-IGDBBR.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IGDBBR.release.xcconfig"; path = "Pods/Target Support Files/Pods-IGDBBR/Pods-IGDBBR.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -173,7 +173,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FCC58CC20B09DDFF2BE7F832 /* libPods-IGDBBR.a in Frameworks */,
+				3AD23B7A4A0B8B6D2DAEA2B9 /* Pods_IGDBBR.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,7 +323,7 @@
 		2972E5F63AF710007320CC23 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				DF77F93E5D4306E712A92D5B /* libPods-IGDBBR.a */,
+				05EEB83AA2F5AD62868E9C36 /* Pods_IGDBBR.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
